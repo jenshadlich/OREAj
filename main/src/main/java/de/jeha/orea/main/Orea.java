@@ -30,7 +30,7 @@ public class Orea {
     }
 
     private static void simpleTask2() {
-        String[] sigma = {"a", "b", "c"};
+        String[] sigma = {"a", "b"};
         Automaton target = new RegExp("(ab|bb)*").toAutomaton();
 
         Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(1000).setThreshold(0.8).build();
