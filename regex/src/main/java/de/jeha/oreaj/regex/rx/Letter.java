@@ -1,23 +1,23 @@
 package de.jeha.oreaj.regex.rx;
 
-import java.util.Iterator;
-
 import de.jeha.oreaj.regex.iterator.PreorderIterator;
 
+import java.util.Iterator;
+
 public class Letter implements RX {
-	private String value;
+    private String value;
 
-	public Letter(String value) {
-		this.value = value;
-	}
+    public Letter(String value) {
+        this.value = value;
+    }
 
-	public String show() {
-		return this.value;
-	}
+    public String show() {
+        return this.value;
+    }
 
-	@Override
-	public Iterator<RX> iterator() {
-		return new PreorderIterator(this);
-	}
+    @Override
+    public Iterator<RX> iterator() {
+        return new PreorderIterator(this);
+    }
 
 }

@@ -1,34 +1,35 @@
 package de.jeha.oreaj.regex.rx;
 
-import java.util.Iterator;
-
 import de.jeha.oreaj.regex.iterator.PreorderIterator;
 
+import java.util.Iterator;
+
 public abstract class Op2 implements RX {
-	private RX left;
-	private RX right;
 
-	protected Op2(RX left, RX right) {
-		this.left = left;
-		this.right = right;
-	}
+    private RX left;
+    private RX right;
 
-	public RX getLeft() {
-		return left;
-	}
+    protected Op2(RX left, RX right) {
+        this.left = left;
+        this.right = right;
+    }
 
-	public RX getRight() {
-		return right;
-	}
+    public RX getLeft() {
+        return left;
+    }
 
-	abstract protected String getGlueString();
+    public RX getRight() {
+        return right;
+    }
 
-	public String show() {
-		return getLeft().show() + getGlueString() + getRight().show();
-	}
+    abstract protected String getGlueString();
 
-	@Override
-	public Iterator<RX> iterator() {
-		return new PreorderIterator(this);
-	}
+    public String show() {
+        return getLeft().show() + getGlueString() + getRight().show();
+    }
+
+    @Override
+    public Iterator<RX> iterator() {
+        return new PreorderIterator(this);
+    }
 }
