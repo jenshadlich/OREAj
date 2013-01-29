@@ -12,8 +12,7 @@ public class EvaluateTest {
     @Test
     public void acceptedTest1() {
         Automaton a = new RegExp("a*").toAutomaton();
-        String[] expected = {"", "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa",
-                "aaaaaaa", "aaaaaaaa", "aaaaaaaaa"};
+        String[] expected = {"", "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa"};
 
         int i = 0;
         for (String s : RXEvaluate.accepted(a, 10)) {
@@ -24,8 +23,7 @@ public class EvaluateTest {
     @Test
     public void acceptedTest2() {
         Automaton a = new RegExp("(a|b)*").toAutomaton();
-        String[] expected = {"", "b", "a", "ba", "aa", "ab", "bb", "aba",
-                "aab", "abb"};
+        String[] expected = {"", "b", "a", "ba", "aa", "ab", "bb", "aba", "aab", "abb"};
 
         int i = 0;
         for (String s : RXEvaluate.accepted(a, 10)) {
