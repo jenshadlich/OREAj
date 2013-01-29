@@ -13,6 +13,13 @@
         <module>genetic</module>
     </modules>
 
+    <properties>
+        <automaton.version>1.11-8</automaton.version>
+        <slf4j.version>1.6.4</slf4j.version>
+        <junit.version>4.11</junit.version>
+        <logback.version>1.0.9</logback.version>
+    </properties>
+
     <repositories>
         <repository>
             <id>clojars.org</id>
@@ -25,22 +32,22 @@
             <dependency>
                 <groupId>dk.brics.automaton</groupId>
                 <artifactId>automaton</artifactId>
-                <version>1.11-8</version>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.11</version>
+                <version>${automaton.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.slf4j</groupId>
                 <artifactId>slf4j-api</artifactId>
-                <version>1.6.4</version>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
             </dependency>
             <dependency>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
-                <version>1.0.9</version>
+                <version>${logback.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
