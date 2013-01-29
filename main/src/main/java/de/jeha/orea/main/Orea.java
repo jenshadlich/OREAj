@@ -1,0 +1,44 @@
+package de.jeha.orea.main;
+
+import de.jeha.oreaj.genetic.Config;
+import de.jeha.oreaj.genetic.ConfigBuilder;
+import de.jeha.oreaj.genetic.Genetic;
+import de.jeha.oreaj.genetic.Population;
+import de.jeha.oreaj.regex.crossover.RXCrossover;
+import de.jeha.oreaj.regex.eval.RXEvaluate;
+import de.jeha.oreaj.regex.generator.RXGenerator;
+import de.jeha.oreaj.regex.rx.RX;
+import dk.brics.automaton.Automaton;
+import dk.brics.automaton.RegExp;
+
+public class Orea {
+
+    public static void main(String[] args) {
+        simpleTask2();
+    }
+
+    private static void simpleTask1() {
+        String[] sigma = {"a", "b", "c"};
+        Automaton target = new RegExp("(aa|ba)*").toAutomaton();
+
+        Config c = new ConfigBuilder().setPopSize(1000).setMaxRuns(50).setThreshold(0).build();
+
+        Genetic<RX> g = new Genetic<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
+        Population<RX> result = g.evolve();
+
+        System.out.println("and the winner is = " + result.best().getGenotype().show());
+    }
+
+    private static void simpleTask2() {
+        String[] sigma = {"a", "b", "c"};
+        Automaton target = new RegExp("(ab|bb)*").toAutomaton();
+
+        Config c = new ConfigBuilder().setPopSize(1000).setMaxRuns(50).setThreshold(0.8).build();
+
+        Genetic<RX> g = new Genetic<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
+        Population<RX> result = g.evolve();
+
+        System.out.println("and the winner is = " + result.best().getGenotype().show());
+    }
+
+}
