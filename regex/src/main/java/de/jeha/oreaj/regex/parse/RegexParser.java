@@ -8,16 +8,16 @@ import de.jeha.oreaj.regex.rx.*;
 public class RegexParser extends Parser {
 
     private RX literal() throws NoParseException {
-        String a = lookahead();
+        String a = lookAhead();
         if (isLetter(a)) {
             consume(a);
             return new Letter(a);
         }
-        throw new NoParseException("Buchstabe erwartet");
+        throw new NoParseException("letter expected");
     }
 
     private RX atom() throws NoParseException {
-        if (trymatch("(")) {
+        if (tryMatch("(")) {
             RX x = expr();
             match(")");
             return x;
@@ -30,25 +30,29 @@ public class RegexParser extends Parser {
     }
 
     private RX stars(RX x) {
-        if (trymatch("*"))
+        if (tryMatch("*")) {
             return stars(new Star(x));
+        }
         return x;
     }
 
     private RX term() throws NoParseException {
         RX x = factor();
-        String a = lookahead();
-        if (isLetter(a) || a.equals("("))
+        String a = lookAhead();
+        if (isLetter(a) || a.equals("(")) {
             return new Dot(x, term());
+        }
         return x;
     }
 
     private RX expr() throws NoParseException {
         RX x = term();
-        if (trymatch("+"))
+        if (tryMatch("+")) {
             return new Union(x, expr());
-        if (trymatch("."))
+        }
+        if (tryMatch(".")) {
             return new Dot(x, expr());
+        }
         return x;
     }
 
@@ -57,8 +61,9 @@ public class RegexParser extends Parser {
         v = a;
         errorMessage = "OK";
         z = expr();
-        if (v.length() > 0)
-            throw new NoParseException("Überzählige Zeichen");
+        if (v.length() > 0) {
+            throw new NoParseException("Too many characters left");
+        }
 
         errorPosition = a.length() - v.length();
         return z;

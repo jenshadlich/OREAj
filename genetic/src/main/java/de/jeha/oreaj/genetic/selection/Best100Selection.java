@@ -10,10 +10,10 @@ import java.util.List;
 
 public class Best100Selection<GT> implements EnvironmentalSelection<GT> {
 
-    final Configuration c;
+    private final Configuration configuration;
 
-    public Best100Selection(final Configuration c) {
-        this.c = c;
+    public Best100Selection(final Configuration configuration) {
+        this.configuration = configuration;
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Best100Selection<GT> implements EnvironmentalSelection<GT> {
 
         int i = 0;
         for (Individual<GT> individual : all) {
-            if (i < c.getPopSize()) {
+            if (i < configuration.getPopulationSize()) {
                 selected.add(individual);
                 i++;
             } else {

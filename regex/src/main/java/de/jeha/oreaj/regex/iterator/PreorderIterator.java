@@ -10,8 +10,6 @@ import java.util.Stack;
 
 /**
  * Iterator for preorder traversal of a RX tree.
- *
- * @author Jens
  */
 public class PreorderIterator implements Iterator<RX> {
 

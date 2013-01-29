@@ -1,14 +1,15 @@
 package de.jeha.oreaj.genetic;
 
 public class Configuration {
-    final int maxRuns;
-    final int popSize;
-    final double threshold;
 
-    Configuration(int maxRuns, int popSize, double threshold) {
+    private final int maxRuns;
+    private final int populationSize;
+    private final double threshold;
+
+    Configuration(int maxRuns, int populationSize, double threshold) {
         super();
         this.maxRuns = maxRuns;
-        this.popSize = popSize;
+        this.populationSize = populationSize;
         this.threshold = threshold;
     }
 
@@ -16,8 +17,8 @@ public class Configuration {
         return maxRuns;
     }
 
-    public int getPopSize() {
-        return popSize;
+    public int getPopulationSize() {
+        return populationSize;
     }
 
     public double getThreshold() {

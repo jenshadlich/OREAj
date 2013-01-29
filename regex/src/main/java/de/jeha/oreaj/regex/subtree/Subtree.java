@@ -8,6 +8,8 @@ import java.util.Random;
 
 public class Subtree {
 
+    private static final Random GENERATOR = new Random();
+
     public static List<RX> subtrees(RX root) {
         List<RX> subtrees = new ArrayList<RX>();
         for (RX i : root) {
@@ -17,9 +19,8 @@ public class Subtree {
     }
 
     public static RX randomSubtree(RX root) {
-        Random generator = new Random();
         List<RX> subtrees = subtrees(root);
-        return subtrees.get(generator.nextInt(subtrees.size() - 1));
+        return subtrees.get(GENERATOR.nextInt(subtrees.size() - 1));
     }
 
 }

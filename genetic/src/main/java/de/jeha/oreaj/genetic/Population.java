@@ -1,10 +1,16 @@
 package de.jeha.oreaj.genetic;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 public class Population<GT> implements Iterable<Individual<GT>> {
+
+    private static final Logger LOG = LoggerFactory.getLogger(Population.class);
+
     private List<Individual<GT>> is = null;
 
     public Population(List<Individual<GT>> is) {
@@ -16,8 +22,8 @@ public class Population<GT> implements Iterable<Individual<GT>> {
         Collections.sort(is);
         try {
             return is.get(0);
-        } catch (IndexOutOfBoundsException ioobe) {
-            // TODO: error handling
+        } catch (IndexOutOfBoundsException e) {
+            LOG.error("Error", e);
             return null;
         }
     }

@@ -1,22 +1,23 @@
 package de.jeha.oreaj.regex.parse;
 
 class Parser {
+
     protected static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
     protected String v; // zu analysierendes Eingabewort
     protected String errorMessage;
     protected int errorPosition;
 
-    protected String lookahead() {
+    protected String lookAhead() {
         if (v.length() > 0)
-            return v.substring(0, 1); // erstes Zeichen
+            return v.substring(0, 1); // first character
         return "";
     }
 
     protected void consume(String a) {
-        v = v.substring(1); // Rest außer dem ersten Zeichen
+        v = v.substring(1); // the rest but the first character
     }
 
-    protected boolean trymatch(String a) {
+    protected boolean tryMatch(String a) {
         if (v.startsWith(a)) {
             consume(a);
             return true;
@@ -25,14 +26,12 @@ class Parser {
     }
 
     protected void match(String a) throws NoParseException {
-        if (!trymatch(a))
-            throw new NoParseException("Zeichen " + a + " erwartet");
+        if (!tryMatch(a))
+            throw new NoParseException("Character '" + a + "' expected");
     }
 
     protected boolean isIn(String a, String set) {
-        if (a.length() > 0)
-            return set.indexOf(a) >= 0;
-        return false;
+        return a.length() > 0 && set.contains(a);
     }
 
     protected boolean isLetter(String a) {

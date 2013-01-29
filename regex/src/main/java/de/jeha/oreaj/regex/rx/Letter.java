@@ -11,6 +11,7 @@ public class Letter implements RX {
         this.value = value;
     }
 
+    @Override
     public String show() {
         return this.value;
     }

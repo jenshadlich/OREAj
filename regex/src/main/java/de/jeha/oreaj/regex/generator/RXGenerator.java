@@ -7,12 +7,11 @@ import java.util.Random;
 
 public class RXGenerator implements Generator<RX> {
 
-    private Random randomGenerator = null;
+    private static final Random GENERATOR = new Random();
     private int depth;
     private String[] sigma;
 
     public RXGenerator(int depth, String[] sigma) {
-        this.randomGenerator = new Random();
         this.depth = depth;
         this.sigma = sigma;
     }
@@ -22,14 +21,12 @@ public class RXGenerator implements Generator<RX> {
         return full(this.depth, this.sigma);
     }
 
-    // -------------------------------------------------------------------------
-    //
-    // -------------------------------------------------------------------------
+    // -----------------------------------------------------------------------------------------------------------------
 
     private RX full(int d, String[] sigma) {
         if (d > 0) {
             // random Operation
-            switch (this.randomGenerator.nextInt(3)) {
+            switch (GENERATOR.nextInt(3)) {
                 case 0:
                     return new Dot(full(d - 1, sigma), full(d - 1, sigma));
                 case 1:
@@ -39,7 +36,7 @@ public class RXGenerator implements Generator<RX> {
             }
         } else {
             // random Letter
-            return new Letter(sigma[this.randomGenerator.nextInt(sigma.length)]);
+            return new Letter(sigma[GENERATOR.nextInt(sigma.length)]);
         }
     }
 

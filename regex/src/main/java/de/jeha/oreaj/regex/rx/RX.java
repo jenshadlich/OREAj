@@ -1,7 +1,8 @@
 package de.jeha.oreaj.regex.rx;
 
 public interface RX extends Iterable<RX> {
-    public String show();
+
+    String show();
 
 	/*
     <T> T visit(Visitor<T> v);

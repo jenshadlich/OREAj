@@ -29,13 +29,13 @@ public class RXEvaluate implements Evaluator<RX> {
         RegExp rx = new RegExp(indiv.show());
         Automaton semantics = rx.toAutomaton();
 
-        Automaton toomuch = semantics.minus(target);
+        Automaton tooMuch = semantics.minus(target);
         Automaton missing = target.minus(semantics);
 
-        double weightToomuch = 100000 * weight(toomuch);
+        double weightTooMuch = 100000 * weight(tooMuch);
         double weightMissing = 1000 * weight(missing);
 
-        return weightToomuch + weightMissing;
+        return weightTooMuch + weightMissing;
     }
 
     public static double evaluate7(Automaton target, RX indiv) {

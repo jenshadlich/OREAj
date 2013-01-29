@@ -29,7 +29,7 @@ public class Genetic<GT> {
         LOG.debug("evolve()");
         p = new Population<GT>(evaluate(initialize()));
 
-        for (int i = 1; i <= c.maxRuns && p.best().getFitness() > c.threshold; i++) {
+        for (int i = 1; i <= c.getMaxRuns() && p.best().getFitness() > c.getThreshold(); i++) {
             LOG.debug("generation = {}", i);
             step();
             LOG.debug("best = {}", p.best().getFitness());
@@ -53,7 +53,7 @@ public class Genetic<GT> {
 
     private List<GT> initialize() {
         List<GT> is = new ArrayList<GT>();
-        for (int i = 0; i < c.popSize; i++) {
+        for (int i = 0; i < c.getPopulationSize(); i++) {
             GT indiv = this.g.generate();
             is.add(indiv);
         }

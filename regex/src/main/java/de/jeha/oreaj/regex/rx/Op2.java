@@ -24,6 +24,7 @@ public abstract class Op2 implements RX {
 
     abstract protected String getGlueString();
 
+    @Override
     public String show() {
         return getLeft().show() + getGlueString() + getRight().show();
     }

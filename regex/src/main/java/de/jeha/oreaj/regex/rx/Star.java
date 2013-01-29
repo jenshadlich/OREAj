@@ -6,6 +6,7 @@ public class Star extends Op1 {
         super(down);
     }
 
+    @Override
     public String show() {
         return "(" + this.getDown().show() + ")*";
     }

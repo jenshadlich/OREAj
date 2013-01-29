@@ -10,6 +10,8 @@ import java.util.Random;
 
 public class RXCrossover implements Crossover<RX> {
 
+    private static final Random GENERATOR = new Random();
+
     @Override
     public RX crossover(RX mom, RX dad) {
         RX stMom = Subtree.randomSubtree(mom);
@@ -19,8 +21,7 @@ public class RXCrossover implements Crossover<RX> {
     }
 
     private RX randomGlue(RX mom, RX dad) {
-        Random generator = new Random();
-        int r = generator.nextInt(1);
+        int r = GENERATOR.nextInt(1);
         switch (r) {
             case 0:
                 return new Dot(mom, dad);
