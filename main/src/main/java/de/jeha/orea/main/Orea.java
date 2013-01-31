@@ -26,7 +26,7 @@ public class Orea {
         GeneticSolver<RX> g = new GeneticSolver<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
         Population<RX> result = g.evolve();
 
-        System.out.println("and the winner is = " + result.best().getGenotype().show());
+        System.out.println("And the winner is = " + result.best().getGenotype().show());
     }
 
     private static void simpleTask2() {
@@ -38,7 +38,7 @@ public class Orea {
         GeneticSolver<RX> g = new GeneticSolver<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
         Population<RX> result = g.evolve();
 
-        System.out.println("and the winner is = " + result.best().getGenotype().show());
+        System.out.println("And the winner is = " + result.best().getGenotype().show());
     }
 
 }
