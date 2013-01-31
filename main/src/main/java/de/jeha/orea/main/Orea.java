@@ -2,7 +2,7 @@ package de.jeha.orea.main;
 
 import de.jeha.oreaj.genetic.Configuration;
 import de.jeha.oreaj.genetic.ConfigurationBuilder;
-import de.jeha.oreaj.genetic.Genetic;
+import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.Population;
 import de.jeha.oreaj.regex.crossover.RXCrossover;
 import de.jeha.oreaj.regex.eval.RXEvaluate;
@@ -23,7 +23,7 @@ public class Orea {
 
         Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(50).setThreshold(0).build();
 
-        Genetic<RX> g = new Genetic<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
+        GeneticSolver<RX> g = new GeneticSolver<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
         Population<RX> result = g.evolve();
 
         System.out.println("and the winner is = " + result.best().getGenotype().show());
@@ -35,7 +35,7 @@ public class Orea {
 
         Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(1000).setThreshold(0.8).build();
 
-        Genetic<RX> g = new Genetic<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
+        GeneticSolver<RX> g = new GeneticSolver<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
         Population<RX> result = g.evolve();
 
         System.out.println("and the winner is = " + result.best().getGenotype().show());
