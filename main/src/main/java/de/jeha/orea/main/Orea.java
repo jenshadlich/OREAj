@@ -11,11 +11,19 @@ import de.jeha.oreaj.regex.rx.RX;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
 
+/**
+ *
+ */
 public class Orea {
 
+    /**
+     * @param args
+     */
     public static void main(String[] args) {
         simpleTask2();
     }
+
+    // -----------------------------------------------------------------------------------------------------------------
 
     private static void simpleTask1() {
         String[] sigma = {"a", "b", "c"};
