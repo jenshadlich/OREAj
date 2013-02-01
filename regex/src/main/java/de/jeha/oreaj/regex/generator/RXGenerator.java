@@ -11,6 +11,10 @@ public class RXGenerator implements Generator<RX> {
     private int depth;
     private String[] sigma;
 
+    /**
+     * @param depth depth of regular expression tree
+     * @param sigma input alphabet
+     */
     public RXGenerator(int depth, String[] sigma) {
         this.depth = depth;
         this.sigma = sigma;
