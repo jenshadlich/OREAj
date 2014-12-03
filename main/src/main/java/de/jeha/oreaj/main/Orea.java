@@ -1,4 +1,4 @@
-package de.jeha.orea.main;
+package de.jeha.oreaj.main;
 
 import de.jeha.oreaj.genetic.Configuration;
 import de.jeha.oreaj.genetic.ConfigurationBuilder;
