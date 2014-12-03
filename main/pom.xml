@@ -38,8 +38,8 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>de.jeha.orea.main.Orea</mainClass>
-                            <packageName>de.jeha.orea.main</packageName>
+                            <mainClass>de.jeha.oreaj.main.Orea</mainClass>
+                            <packageName>de.jeha.oreaj.main</packageName>
                             <addClasspath>true</addClasspath>
                             <classpathPrefix>lib/</classpathPrefix>
                         </manifest>
