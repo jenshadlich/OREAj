@@ -1,10 +1,11 @@
 oreaj.iml
+orea.ipr
+orea.iws
 /run.cmd
-/genetic/oreaj.genetic.iml
-/main/oreaj.main.iml
-/regex/oreaj.regex.iml
+/genetic/genetic.iml
+/main/main.iml
+/regex/regex.iml
 /genetic/target
 /main/target
 /regex/target
-
 /.idea
