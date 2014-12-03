@@ -15,7 +15,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- dependencies -->
+        <!-- dependency versions -->
         <automaton.version>1.11-8</automaton.version>
         <slf4j.version>1.6.4</slf4j.version>
         <junit.version>4.11</junit.version>

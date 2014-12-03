@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <groupId>de.jeha.oreaj</groupId>
-    <artifactId>oreaj.genetic</artifactId>
+    <artifactId>genetic</artifactId>
     <name>OREAj.genetic</name>
 
     <dependencies>

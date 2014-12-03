@@ -6,7 +6,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>oreaj.main</artifactId>
+    <artifactId>main</artifactId>
     <name>OREAj.main</name>
     <packaging>jar</packaging>
 
