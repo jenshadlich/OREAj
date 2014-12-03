@@ -10,7 +10,7 @@ import static org.junit.Assert.assertEquals;
 public class EvaluateTest {
 
     @Test
-    public void acceptedTest1() {
+    public void acceptedTestAStar() {
         Automaton a = new RegExp("a*").toAutomaton();
         String[] expected = {"", "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa"};
 
@@ -21,7 +21,7 @@ public class EvaluateTest {
     }
 
     @Test
-    public void acceptedTest2() {
+    public void acceptedTestAOrBStar() {
         Automaton a = new RegExp("(a|b)*").toAutomaton();
         String[] expected = {"", "b", "a", "ba", "aa", "ab", "bb", "aba", "aab", "abb"};
 
