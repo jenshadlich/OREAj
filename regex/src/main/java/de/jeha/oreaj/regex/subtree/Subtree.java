@@ -11,7 +11,7 @@ public class Subtree {
     private static final Random GENERATOR = new Random();
 
     public static List<RX> subtrees(RX root) {
-        List<RX> subtrees = new ArrayList<RX>();
+        List<RX> subtrees = new ArrayList<>();
         for (RX i : root) {
             subtrees.add(i);
         }

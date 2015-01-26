@@ -70,7 +70,7 @@ public class RXEvaluate implements Evaluator<RX> {
      */
     public static List<String> accepted(Automaton a, int limit) {
         int len = 0;
-        List<String> acc = new ArrayList<String>();
+        List<String> acc = new ArrayList<>();
         int cSize = 0;
         int cLoops = 0;
 
