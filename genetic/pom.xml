@@ -6,7 +6,6 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>de.jeha.oreaj</groupId>
     <artifactId>genetic</artifactId>
     <name>OREAj.genetic</name>
 
