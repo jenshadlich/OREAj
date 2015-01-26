@@ -27,7 +27,7 @@ public class GeneticSolver<GT> {
 
     public Population<GT> evolve() {
         LOG.debug("evolve()");
-        p = new Population<GT>(evaluate(initialize()));
+        p = new Population<>(evaluate(initialize()));
 
         for (int i = 1; terminate(i); i++) {
             LOG.debug("generation = {}", i);
@@ -45,19 +45,19 @@ public class GeneticSolver<GT> {
     }
 
     private List<Individual<GT>> evaluate(List<GT> as) {
-        List<Individual<GT>> is = new ArrayList<Individual<GT>>();
+        List<Individual<GT>> is = new ArrayList<>();
         for (GT g : as) {
             double fitness = this.e.evaluate(g);
-            is.add(new Individual<GT>(g, fitness));
+            is.add(new Individual<>(g, fitness));
         }
         return is;
     }
 
     private List<GT> initialize() {
-        List<GT> is = new ArrayList<GT>();
+        List<GT> is = new ArrayList<>();
         for (int i = 0; i < c.getPopulationSize(); i++) {
-            GT indiv = this.g.generate();
-            is.add(indiv);
+            GT individual = this.g.generate();
+            is.add(individual);
         }
         return is;
     }
@@ -80,17 +80,16 @@ public class GeneticSolver<GT> {
 
     private List<GT> variate() {
 
-        List<GT> candidates = new ArrayList<GT>();
+        List<GT> candidates = new ArrayList<>();
 
         // TODO: just xover
 
         GT prev = null;
-        for (Individual<GT> indiv : this.p) {
+        for (Individual<GT> individual : this.p) {
             if (prev == null) {
-                prev = indiv.getGenotype();
-                continue;
+                prev = individual.getGenotype();
             } else {
-                GT child = x.crossover(prev, indiv.getGenotype());
+                GT child = x.crossover(prev, individual.getGenotype());
                 prev = null;
                 candidates.add(child);
             }
