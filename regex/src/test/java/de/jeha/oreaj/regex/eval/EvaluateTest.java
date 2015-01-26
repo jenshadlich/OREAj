@@ -4,7 +4,12 @@ import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
 import org.junit.Test;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class EvaluateTest {
 
@@ -22,11 +27,12 @@ public class EvaluateTest {
     @Test
     public void acceptedTestAOrBStar() {
         Automaton a = new RegExp("(a|b)*").toAutomaton();
-        String[] expected = {"", "b", "a", "ba", "aa", "ab", "bb", "aba", "aab", "abb"};
+        Set<String> expected = new HashSet<>(Arrays.asList(new String[]{
+                "", "b", "a", "ba", "aa", "ab", "bb", "aaa", "aab", "abb", "bbb", "bba", "baa", "aba", "bab"
+        }));
 
-        int i = 0;
-        for (String s : RXEvaluate.accepted(a, 10)) {
-            assertEquals(expected[i++], s);
+        for (String s : RXEvaluate.accepted(a, 15)) {
+            assertTrue(expected.contains(s));
         }
     }
 }
