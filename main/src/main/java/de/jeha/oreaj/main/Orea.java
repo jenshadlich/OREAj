@@ -31,7 +31,7 @@ public class Orea {
 
         Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(50).setThreshold(0).build();
 
-        GeneticSolver<RX> g = new GeneticSolver<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
+        GeneticSolver<RX> g = new GeneticSolver<>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
         Population<RX> result = g.evolve();
 
         System.out.println("And the winner is = " + result.best().getGenotype().show());
@@ -43,7 +43,7 @@ public class Orea {
 
         Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(1000).setThreshold(0.8).build();
 
-        GeneticSolver<RX> g = new GeneticSolver<RX>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
+        GeneticSolver<RX> g = new GeneticSolver<>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
         Population<RX> result = g.evolve();
 
         System.out.println("And the winner is = " + result.best().getGenotype().show());
