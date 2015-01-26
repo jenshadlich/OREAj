@@ -3,22 +3,27 @@ package de.jeha.oreaj.regex.parse;
 class Parser {
 
     protected static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
-    protected String v; // zu analysierendes Eingabewort
-    protected String errorMessage;
+    protected String input;
+    protected String cursor;
     protected int errorPosition;
 
+    protected Parser(String input) {
+        this.input = input;
+        this.cursor = input;
+    }
+
     protected String lookAhead() {
-        if (v.length() > 0)
-            return v.substring(0, 1); // first character
+        if (cursor.length() > 0)
+            return cursor.substring(0, 1); // first character
         return "";
     }
 
     protected void consume(String a) {
-        v = v.substring(1); // the rest but the first character
+        cursor = cursor.substring(1); // the rest but the first character
     }
 
     protected boolean tryMatch(String a) {
-        if (v.startsWith(a)) {
+        if (cursor.startsWith(a)) {
             consume(a);
             return true;
         }

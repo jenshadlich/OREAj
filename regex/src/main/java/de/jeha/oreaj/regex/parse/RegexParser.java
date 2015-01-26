@@ -7,6 +7,10 @@ import de.jeha.oreaj.regex.rx.*;
  */
 public class RegexParser extends Parser {
 
+    public RegexParser(String input) {
+        super(input);
+    }
+
     private RX literal() throws NoParseException {
         String a = lookAhead();
         if (isLetter(a)) {
@@ -56,16 +60,14 @@ public class RegexParser extends Parser {
         return x;
     }
 
-    public RX parse(String a) throws NoParseException {
-        RX z = null;
-        v = a;
-        errorMessage = "OK";
+    public RX parse() throws NoParseException {
+        RX z;
         z = expr();
-        if (v.length() > 0) {
+        if (cursor.length() > 0) {
             throw new NoParseException("Too many characters left");
         }
+        errorPosition = cursor.length() - input.length();
 
-        errorPosition = a.length() - v.length();
         return z;
     }
 

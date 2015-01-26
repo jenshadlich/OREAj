@@ -10,16 +10,16 @@ public class RegexParserTest {
     @Test
     public void testNormalize() throws NoParseException {
         RX expected = new Star(new Union(new Letter("a"), new Dot(new Letter("a"), new Letter("b"))));
-        assertEquals(expected.show(), new RegexParser().parse("(a+ab)*").show());
+        assertEquals(expected.show(), new RegexParser("(a+ab)*").parse().show());
     }
 
     @Test(expected = NoParseException.class)
     public void testNoParseException1() throws NoParseException {
-        new RegexParser().parse("123");
+        new RegexParser("123").parse();
     }
 
     @Test(expected = NoParseException.class)
     public void testNoParseException2() throws NoParseException {
-        new RegexParser().parse("(a");
+        new RegexParser("(a").parse();
     }
 }
