@@ -12,7 +12,7 @@
     <dependencies>
         <dependency>
             <groupId>de.jeha.oreaj</groupId>
-            <artifactId>oreaj.genetic</artifactId>
+            <artifactId>genetic</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
@@ -23,17 +23,10 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
         </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 </project>
