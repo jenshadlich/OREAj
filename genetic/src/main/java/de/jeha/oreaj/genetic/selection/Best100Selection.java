@@ -19,8 +19,8 @@ public class Best100Selection<GT> implements EnvironmentalSelection<GT> {
     @Override
     public Population<GT> select(final Population<GT> p) {
 
-        List<Individual<GT>> all = new ArrayList<Individual<GT>>();
-        List<Individual<GT>> selected = new ArrayList<Individual<GT>>();
+        List<Individual<GT>> all = new ArrayList<>();
+        List<Individual<GT>> selected = new ArrayList<>();
 
         for (Individual<GT> i : p) {
             all.add(i);
@@ -37,7 +37,7 @@ public class Best100Selection<GT> implements EnvironmentalSelection<GT> {
             }
         }
 
-        return new Population<GT>(selected);
+        return new Population<>(selected);
     }
 
 }
