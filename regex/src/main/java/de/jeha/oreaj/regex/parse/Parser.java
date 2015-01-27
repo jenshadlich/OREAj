@@ -1,6 +1,11 @@
 package de.jeha.oreaj.regex.parse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 class Parser {
+
+    private final Logger LOG = LoggerFactory.getLogger(Parser.class);
 
     protected static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
     protected String input;
@@ -13,26 +18,33 @@ class Parser {
     }
 
     protected String lookAhead() {
-        if (cursor.length() > 0)
+        if (cursor.length() > 0) {
             return cursor.substring(0, 1); // first character
+        }
         return "";
     }
 
-    protected void consume(String a) {
+    /**
+     * @param character string to consume (only needed for logging)
+     */
+    protected void consume(String character) {
+        LOG.debug("consume string {}", character);
         cursor = cursor.substring(1); // the rest but the first character
     }
 
-    protected boolean tryMatch(String a) {
-        if (cursor.startsWith(a)) {
-            consume(a);
+    protected boolean tryMatch(String character) {
+        LOG.debug("try match {} with {}", cursor, character);
+        if (cursor.startsWith(character)) {
+            consume(character);
             return true;
         }
         return false;
     }
 
     protected void match(String a) throws NoParseException {
-        if (!tryMatch(a))
+        if (!tryMatch(a)) {
             throw new NoParseException("Character '" + a + "' expected");
+        }
     }
 
     protected boolean isIn(String a, String set) {
