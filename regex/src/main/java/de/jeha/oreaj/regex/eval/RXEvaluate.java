@@ -24,9 +24,9 @@ public class RXEvaluate implements Evaluator<RX> {
         return RXEvaluate.evaluate7(this.target, individual);
     }
 
-    public static double evaluate6(Automaton target, RX indiv) {
+    public static double evaluate6(Automaton target, RX individual) {
 
-        RegExp rx = new RegExp(indiv.show());
+        RegExp rx = new RegExp(individual.show());
         Automaton semantics = rx.toAutomaton();
 
         Automaton tooMuch = semantics.minus(target);
@@ -38,9 +38,9 @@ public class RXEvaluate implements Evaluator<RX> {
         return weightTooMuch + weightMissing;
     }
 
-    public static double evaluate7(Automaton target, RX indiv) {
+    public static double evaluate7(Automaton target, RX individual) {
 
-        RegExp rx = new RegExp(indiv.show());
+        RegExp rx = new RegExp(individual.show());
         Automaton semantics = rx.toAutomaton();
 
         Automaton tooMuch = semantics.minus(target);
@@ -49,7 +49,7 @@ public class RXEvaluate implements Evaluator<RX> {
         double weightTooMuch = 100000 * weight(tooMuch);
         double weightMissing = 1000 * weight(missing);
 
-        return weightTooMuch + weightMissing + indiv.show().length() * 0.1;
+        return weightTooMuch + weightMissing + individual.show().length() * 0.1;
     }
 
     public static double weight(Automaton a) {
@@ -64,11 +64,11 @@ public class RXEvaluate implements Evaluator<RX> {
     /**
      * TODO: refactor to use iterator pattern
      *
-     * @param a
+     * @param automaton
      * @param limit
      * @return
      */
-    public static List<String> accepted(Automaton a, int limit) {
+    public static List<String> accepted(Automaton automaton, int limit) {
         int len = 0;
         List<String> acc = new ArrayList<>();
         int cSize = 0;
@@ -79,7 +79,7 @@ public class RXEvaluate implements Evaluator<RX> {
             cLoops++;
 
             // get all accepted strings for the given size
-            Set<String> curr = a.getStrings(cSize);
+            Set<String> curr = automaton.getStrings(cSize); // TODO: investigate why the set has a different order with Java 8
 
             // no Strings for the given size
             // TODO: refactor magic number
