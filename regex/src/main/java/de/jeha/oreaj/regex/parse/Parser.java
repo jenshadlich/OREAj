@@ -8,11 +8,11 @@ class Parser {
     private final Logger LOG = LoggerFactory.getLogger(Parser.class);
 
     protected static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
-    protected String input;
+    protected final String input;
     protected String cursor;
     protected int errorPosition;
 
-    protected Parser(String input) {
+    protected Parser(final String input) {
         this.input = input;
         this.cursor = input;
     }
@@ -25,15 +25,15 @@ class Parser {
     }
 
     /**
-     * @param character string to consume (only needed for logging)
+     * @param character string to consume (actually, only needed for logging)
      */
     protected void consume(String character) {
-        LOG.debug("consume string {}", character);
+        LOG.debug("consume string '{}'", character);
         cursor = cursor.substring(1); // the rest but the first character
     }
 
     protected boolean tryMatch(String character) {
-        LOG.debug("try match {} with {}", cursor, character);
+        LOG.debug("try match '{}' with '{}'", cursor, character);
         if (cursor.startsWith(character)) {
             consume(character);
             return true;
@@ -41,17 +41,17 @@ class Parser {
         return false;
     }
 
-    protected void match(String a) throws NoParseException {
-        if (!tryMatch(a)) {
-            throw new NoParseException("Character '" + a + "' expected");
+    protected void match(String character) throws NoParseException {
+        if (!tryMatch(character)) {
+            throw new NoParseException("Character '" + character + "' expected");
         }
     }
 
-    protected boolean isIn(String a, String set) {
-        return a.length() > 0 && set.contains(a);
+    protected boolean isIn(String character, String set) {
+        return character.length() > 0 && set.contains(character);
     }
 
-    protected boolean isLetter(String a) {
-        return isIn(a, ALPHA);
+    protected boolean isLetter(String character) {
+        return isIn(character, ALPHA);
     }
 }
