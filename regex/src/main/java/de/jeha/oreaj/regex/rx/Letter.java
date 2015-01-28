@@ -5,6 +5,7 @@ import de.jeha.oreaj.regex.iterator.PreorderIterator;
 import java.util.Iterator;
 
 public class Letter implements RX {
+
     private String value;
 
     public Letter(String value) {

@@ -4,7 +4,7 @@ public interface RX extends Iterable<RX> {
 
     String show();
 
-	/*
+	/* TODO: what to do with this?
     <T> T visit(Visitor<T> v);
 
 	interface Visitor<T> {

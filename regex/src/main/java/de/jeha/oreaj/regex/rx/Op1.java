@@ -5,6 +5,7 @@ import de.jeha.oreaj.regex.iterator.PreorderIterator;
 import java.util.Iterator;
 
 public abstract class Op1 implements RX {
+
     private RX down;
 
     protected Op1(RX down) {
