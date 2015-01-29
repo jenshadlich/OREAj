@@ -7,7 +7,6 @@ public class Configuration {
     private final double threshold;
 
     Configuration(int maxRuns, int populationSize, double threshold) {
-        super();
         this.maxRuns = maxRuns;
         this.populationSize = populationSize;
         this.threshold = threshold;
