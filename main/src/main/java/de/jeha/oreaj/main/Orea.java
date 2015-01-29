@@ -10,11 +10,15 @@ import de.jeha.oreaj.regex.generator.RXGenerator;
 import de.jeha.oreaj.regex.rx.RX;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  */
 public class Orea {
+
+    private static final Logger LOG = LoggerFactory.getLogger(Orea.class);
 
     /**
      * @param args
@@ -31,10 +35,11 @@ public class Orea {
 
         Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(50).setThreshold(0).build();
 
-        GeneticSolver<RX> g = new GeneticSolver<>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
-        Population<RX> result = g.evolve();
+        GeneticSolver<RX> solver =
+                new GeneticSolver<>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
+        Population<RX> result = solver.evolve();
 
-        System.out.println("And the winner is = " + result.best().getGenotype().show());
+        LOG.info("Winner = '{}'", result.best().getGenotype().show());
     }
 
     private static void simpleTask2() {
@@ -46,7 +51,7 @@ public class Orea {
         GeneticSolver<RX> g = new GeneticSolver<>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
         Population<RX> result = g.evolve();
 
-        System.out.println("And the winner is = " + result.best().getGenotype().show());
+        LOG.info("Winner = '{}'", result.best().getGenotype().show());
     }
 
 }
