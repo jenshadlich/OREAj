@@ -11,31 +11,31 @@ public class Population<GT> implements Iterable<Individual<GT>> {
 
     private static final Logger LOG = LoggerFactory.getLogger(Population.class);
 
-    private List<Individual<GT>> is = null;
+    private List<Individual<GT>> individuals = null;
 
     public Population(List<Individual<GT>> is) {
         super();
-        this.is = is;
+        this.individuals = is;
     }
 
     public Individual<GT> best() {
-        Collections.sort(is);
+        Collections.sort(individuals);
         try {
-            return is.get(0);
+            return individuals.get(0);
         } catch (IndexOutOfBoundsException e) {
             LOG.error("Error", e);
             return null;
         }
     }
 
-    public void join(List<Individual<GT>> is) {
-        this.is.addAll(is);
+    public void join(List<Individual<GT>> individuals) {
+        this.individuals.addAll(individuals);
     }
 
     @Override
     public Iterator<Individual<GT>> iterator() {
 
-        final Iterator<Individual<GT>> it = this.is.iterator();
+        final Iterator<Individual<GT>> it = this.individuals.iterator();
 
         return new Iterator<Individual<GT>>() {
 

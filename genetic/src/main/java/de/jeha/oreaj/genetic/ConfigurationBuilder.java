@@ -5,7 +5,7 @@ public class ConfigurationBuilder {
     private int maxRuns = 10;
     private int popSize = 100;
     private double threshold = 0.01;
-
+    
     public ConfigurationBuilder setMaxRuns(int maxRuns) {
         this.maxRuns = maxRuns;
         return this;
