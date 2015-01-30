@@ -22,4 +22,10 @@ public class RegexParserTest {
     public void testNoParseException2() throws NoParseException {
         new RegexParser("(a").parse();
     }
+
+    @Test(expected = NoParseException.class)
+    public void testNoParseException3() throws NoParseException {
+        new RegexParser("a)").parse();
+    }
+
 }
