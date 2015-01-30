@@ -23,7 +23,7 @@ public class Orea {
     /**
      * @param args
      */
-    public static void main(String[] args) {
+    public static void main(String... args) {
         simpleTask2();
     }
 
