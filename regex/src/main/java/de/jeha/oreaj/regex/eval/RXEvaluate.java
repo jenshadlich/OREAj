@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class RXEvaluate implements Evaluator<RX> {
 
-    private Automaton target = null;
+    private final Automaton target;
 
     // private final Logger LOG = LoggerFactory.getLogger(RXEvaluate.class);
 
@@ -21,10 +21,10 @@ public class RXEvaluate implements Evaluator<RX> {
 
     @Override
     public double evaluate(RX individual) {
-        return RXEvaluate.evaluate7(this.target, individual);
+        return evaluate7(individual);
     }
 
-    public static double evaluate6(Automaton target, RX individual) {
+    double evaluate6(Automaton target, RX individual) {
 
         RegExp rx = new RegExp(individual.show());
         Automaton semantics = rx.toAutomaton();
@@ -38,7 +38,7 @@ public class RXEvaluate implements Evaluator<RX> {
         return weightTooMuch + weightMissing;
     }
 
-    public static double evaluate7(Automaton target, RX individual) {
+    double evaluate7(RX individual) {
 
         RegExp rx = new RegExp(individual.show());
         Automaton semantics = rx.toAutomaton();
@@ -52,52 +52,12 @@ public class RXEvaluate implements Evaluator<RX> {
         return weightTooMuch + weightMissing + individual.show().length() * 0.1;
     }
 
-    public static double weight(Automaton a) {
+    double weight(Automaton automaton) {
         double sum = 0.0;
 
-        for (String s : accepted(a, 10)) {
+        for (String s : AutomatonHelper.accepted(automaton, 10)) {
             sum += Math.pow(2, -1 * s.length());
         }
         return sum;
     }
-
-    /**
-     * TODO: refactor to use iterator pattern
-     *
-     * @param automaton
-     * @param limit
-     * @return
-     */
-    public static List<String> accepted(Automaton automaton, int limit) {
-        int len = 0;
-        List<String> acc = new ArrayList<>();
-        int cSize = 0;
-        int cLoops = 0;
-
-        add:
-        while (true) {
-            cLoops++;
-
-            // get all accepted strings for the given size
-            Set<String> curr = automaton.getStrings(cSize); // TODO: investigate why the set has a different order with Java 8
-
-            // no Strings for the given size
-            // TODO: refactor magic number
-            if (curr.isEmpty() && cLoops > 1000)
-                break;
-
-            for (String s : curr) {
-                if (len < limit) {
-                    acc.add(s); // add to list of accepted strings
-                    len++;
-                } else {
-                    break add;
-                }
-            }
-            cSize++;
-        }
-
-        return acc;
-    }
-
 }
