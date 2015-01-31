@@ -55,8 +55,8 @@ public class RXEvaluate implements Evaluator<RX> {
     double weight(Automaton automaton) {
         double sum = 0.0;
 
-        for (String s : AutomatonHelper.accepted(automaton, 10)) {
-            sum += Math.pow(2, -1 * s.length());
+        for (String accepted : AutomatonHelper.accepted(automaton, 10)) {
+            sum += Math.pow(2, -1 * accepted.length());
         }
         return sum;
     }

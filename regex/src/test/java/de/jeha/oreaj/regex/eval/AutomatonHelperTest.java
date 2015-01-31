@@ -11,7 +11,7 @@ import java.util.Set;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class EvaluateTest {
+public class AutomatonHelperTest {
 
     @Test
     public void acceptedTestAStar() {
@@ -19,7 +19,7 @@ public class EvaluateTest {
         String[] expected = {"", "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa"};
 
         int i = 0;
-        for (String s : RXEvaluate.accepted(a, 10)) {
+        for (String s : AutomatonHelper.accepted(a, 10)) {
             assertEquals(expected[i++], s);
         }
     }
@@ -31,7 +31,7 @@ public class EvaluateTest {
                 "", "b", "a", "ba", "aa", "ab", "bb", "aaa", "aab", "abb", "bbb", "bba", "baa", "aba", "bab"
         }));
 
-        for (String s : RXEvaluate.accepted(a, 15)) {
+        for (String s : AutomatonHelper.accepted(a, 15)) {
             assertTrue(expected.contains(s));
         }
     }

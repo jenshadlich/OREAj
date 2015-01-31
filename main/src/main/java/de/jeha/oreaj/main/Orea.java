@@ -46,7 +46,7 @@ public class Orea {
         String[] sigma = {"a", "b"};
         Automaton target = new RegExp("(ab|bb)*").toAutomaton();
 
-        Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(1000).setThreshold(0.8).build();
+        Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(100).setThreshold(0.8).build();
 
         GeneticSolver<RX> g = new GeneticSolver<>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
         Population<RX> result = g.evolve();
