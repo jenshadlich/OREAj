@@ -32,8 +32,8 @@ public class RXEvaluate implements Evaluator<RX> {
         Automaton tooMuch = semantics.minus(target);
         Automaton missing = target.minus(semantics);
 
-        double weightTooMuch = 100000 * weight(tooMuch);
-        double weightMissing = 1000 * weight(missing);
+        double weightTooMuch = 100_000 * weight(tooMuch);
+        double weightMissing = 1_000 * weight(missing);
 
         return weightTooMuch + weightMissing;
     }
@@ -46,8 +46,8 @@ public class RXEvaluate implements Evaluator<RX> {
         Automaton tooMuch = semantics.minus(target);
         Automaton missing = target.minus(semantics);
 
-        double weightTooMuch = 100000 * weight(tooMuch);
-        double weightMissing = 1000 * weight(missing);
+        double weightTooMuch = 100_000 * weight(tooMuch);
+        double weightMissing = 1_000 * weight(missing);
 
         return weightTooMuch + weightMissing + individual.show().length() * 0.1;
     }

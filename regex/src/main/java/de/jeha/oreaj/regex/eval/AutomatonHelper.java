@@ -30,7 +30,7 @@ class AutomatonHelper {
 
             // no Strings for the given size
             // TODO: refactor magic number
-            if (curr.isEmpty() && cLoops > 1000)
+            if (curr.isEmpty() && cLoops > 1_000)
                 break;
 
             for (String s : curr) {

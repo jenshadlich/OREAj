@@ -13,6 +13,6 @@ public class RXEvaluateTest {
         RXEvaluate evaluate = new RXEvaluate(new RegExp("(a|b)*").toAutomaton());
         double result = evaluate.evaluate7(new Letter("a"));
 
-        assertEquals(3000.1, result, 1.0e-3);
+        assertEquals(3_000.1, result, 1.0e-3);
     }
 }
