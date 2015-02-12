@@ -24,7 +24,7 @@ public class Orea {
      * @param args
      */
     public static void main(String... args) {
-        simpleTask2();
+        shuffleTask1();
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -45,6 +45,18 @@ public class Orea {
     private static void simpleTask2() {
         String[] sigma = {"a", "b"};
         Automaton target = new RegExp("(ab|bb)*").toAutomaton();
+
+        Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(100).setThreshold(0.8).build();
+
+        GeneticSolver<RX> g = new GeneticSolver<>(c, new RXGenerator(3, sigma), new RXEvaluate(target), new RXCrossover());
+        Population<RX> result = g.evolve();
+
+        LOG.info("Winner = '{}'", result.best().getGenotype().show());
+    }
+
+    private static void shuffleTask1() {
+        String[] sigma = {"a", "b"};
+        Automaton target = new RegExp("(aa)*$b*").toAutomaton();
 
         Configuration c = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(100).setThreshold(0.8).build();
 
