@@ -1,13 +1,10 @@
 package de.jeha.oreaj.regex.eval;
 
 import de.jeha.oreaj.genetic.Evaluator;
+import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import de.jeha.oreaj.regex.rx.RX;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 public class RXEvaluate implements Evaluator<RX> {
 

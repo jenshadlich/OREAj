@@ -1,5 +1,6 @@
 package de.jeha.oreaj.regex.eval;
 
+import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
 import org.junit.Test;

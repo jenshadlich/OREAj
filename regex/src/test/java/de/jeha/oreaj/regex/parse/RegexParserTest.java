@@ -8,9 +8,15 @@ import static org.junit.Assert.assertEquals;
 public class RegexParserTest {
 
     @Test
-    public void testNormalize() throws NoParseException {
+    public void test() throws NoParseException {
         RX expected = new Star(new Union(new Letter("a"), new Dot(new Letter("a"), new Letter("b"))));
         assertEquals(expected.show(), new RegexParser("(a+ab)*").parse().show());
+    }
+
+    @Test
+    public void testParseWithShuffle() throws NoParseException {
+        RX expected = new Shuffle(new Star(new Dot(new Letter("a"), new Letter("a"))), new Star(new Letter("b")));
+        assertEquals(expected.show(), new RegexParser("(aa)*$b*").parse().show());
     }
 
     @Test(expected = NoParseException.class)

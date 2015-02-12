@@ -1,7 +1,6 @@
-package de.jeha.oreaj.regex;
+package de.jeha.oreaj.regex.automaton;
 
-import de.jeha.oreaj.regex.eval.AutomatonHelper;
-import de.jeha.oreaj.regex.eval.AutomatonHelperTest;
+import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
 import dk.brics.automaton.ShuffleOperations;

@@ -57,6 +57,9 @@ public class RegexParser extends Parser {
         if (tryMatch(".")) {
             return new Dot(x, expr());
         }
+        if (tryMatch("$")) {
+            return new Shuffle(x, expr());
+        }
         return x;
     }
 
