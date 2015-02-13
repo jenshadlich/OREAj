@@ -1,10 +1,9 @@
 package de.jeha.oreaj.regex.rx;
 
-import de.jeha.oreaj.regex.iterator.PreorderIterator;
+import java.util.Arrays;
+import java.util.List;
 
-import java.util.Iterator;
-
-public abstract class Op2 implements RX {
+public abstract class Op2 extends AbstractRX {
 
     private RX left;
     private RX right;
@@ -30,7 +29,7 @@ public abstract class Op2 implements RX {
     }
 
     @Override
-    public Iterator<RX> iterator() {
-        return new PreorderIterator(this);
+    final public List<RX> siblings() {
+        return Arrays.asList(getRight(), getLeft());
     }
 }

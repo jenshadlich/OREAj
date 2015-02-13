@@ -30,16 +30,8 @@ public class PreorderIterator implements Iterator<RX> {
             throw new NoSuchElementException();
         }
         RX next = path.pop();
+        next.siblings().forEach(path::push);
 
-        // TODO: refactor to don't use instanceof
-        if (next instanceof Op2) {
-            Op2 o = (Op2) next;
-            path.push(o.getRight());
-            path.push(o.getLeft());
-        } else if (next instanceof Op1) {
-            Op1 o = (Op1) next;
-            path.push(o.getDown());
-        }
         return next;
     }
 

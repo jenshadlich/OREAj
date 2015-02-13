@@ -1,18 +1,11 @@
 package de.jeha.oreaj.regex.rx;
 
+import java.util.List;
+
 public interface RX extends Iterable<RX> {
 
     String show();
 
-	/* TODO: what to do with this?
-    <T> T visit(Visitor<T> v);
+	List<RX> siblings();
 
-	interface Visitor<T> {
-		T leaf(RX key);
-
-		T node(T down);
-
-		T branch(T left, T right);
-	}
-	*/
 }

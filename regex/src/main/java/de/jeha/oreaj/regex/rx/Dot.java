@@ -12,4 +12,5 @@ public class Dot extends Op2 {
     protected String getGlueString() {
         return GLUE_STRING_DOT;
     }
+
 }

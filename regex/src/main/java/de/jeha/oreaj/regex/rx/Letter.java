@@ -1,10 +1,9 @@
 package de.jeha.oreaj.regex.rx;
 
-import de.jeha.oreaj.regex.iterator.PreorderIterator;
+import java.util.Collections;
+import java.util.List;
 
-import java.util.Iterator;
-
-public class Letter implements RX {
+public class Letter extends AbstractRX {
 
     private String value;
 
@@ -18,8 +17,8 @@ public class Letter implements RX {
     }
 
     @Override
-    public Iterator<RX> iterator() {
-        return new PreorderIterator(this);
+    public List<RX> siblings() {
+        return Collections.emptyList();
     }
 
 }

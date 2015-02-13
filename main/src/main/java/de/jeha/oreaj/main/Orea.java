@@ -24,7 +24,8 @@ public class Orea {
      * @param args
      */
     public static void main(String... args) {
-        shuffleTask1();
+        simpleTask1();
+        //shuffleTask1();
     }
 
     // -----------------------------------------------------------------------------------------------------------------
