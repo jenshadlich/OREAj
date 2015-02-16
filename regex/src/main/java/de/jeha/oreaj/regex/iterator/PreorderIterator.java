@@ -1,7 +1,5 @@
 package de.jeha.oreaj.regex.iterator;
 
-import de.jeha.oreaj.regex.rx.Op1;
-import de.jeha.oreaj.regex.rx.Op2;
 import de.jeha.oreaj.regex.rx.RX;
 
 import java.util.Iterator;
@@ -36,7 +34,7 @@ public class PreorderIterator implements Iterator<RX> {
     }
 
     /**
-     * Not implemented. Always throws {@link UnsupportedOperationException}
+     * Not implemented by intention. Always throw a {@link UnsupportedOperationException}.
      */
     @Override
     public void remove() {
