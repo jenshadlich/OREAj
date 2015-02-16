@@ -2,8 +2,8 @@ package de.jeha.oreaj.genetic;
 
 public class Individual<GT> implements Comparable<Individual<GT>> {
 
-    private GT genotype = null;
-    private double fitness;
+    private final GT genotype;
+    private final double fitness;
 
     public Individual(GT genotype, double fitness) {
         this.genotype = genotype;

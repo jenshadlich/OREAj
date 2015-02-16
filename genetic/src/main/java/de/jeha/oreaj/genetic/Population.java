@@ -13,7 +13,7 @@ public class Population<GT> implements Iterable<Individual<GT>> {
 
     private static final Logger LOG = LoggerFactory.getLogger(Population.class);
 
-    private List<Individual<GT>> individuals = null;
+    private final List<Individual<GT>> individuals;
 
     public Population(List<Individual<GT>> is) {
         super();
