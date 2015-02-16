@@ -4,8 +4,6 @@ import de.jeha.oreaj.genetic.Configuration;
 import de.jeha.oreaj.genetic.Individual;
 import de.jeha.oreaj.genetic.Population;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,15 +16,17 @@ public class Best100Selection<GT> implements EnvironmentalSelection<GT> {
     }
 
     @Override
-    public Population<GT> select(final Population<GT> p) {
+    public Population<GT> select(final Population<GT> population) {
 
-        List<Individual<GT>> all = new ArrayList<>();
+        final List<Individual<GT>> populationRankedByFitness = population
+                .stream()
+                .sorted()
+                .collect(Collectors.toList());
 
-        p.forEach(all::add);
-
-        Collections.sort(all);
-
-        return new Population<>(all.stream().limit(configuration.getPopulationSize()).collect(Collectors.toList()));
+        return new Population<>(populationRankedByFitness
+                .stream()
+                .limit(configuration.getPopulationSize())
+                .collect(Collectors.toList()));
     }
 
 }
