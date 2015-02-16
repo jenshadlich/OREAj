@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class Population<GT> implements Iterable<Individual<GT>> {
 
@@ -54,6 +56,10 @@ public class Population<GT> implements Iterable<Individual<GT>> {
                 it.remove();
             }
         };
+    }
+
+    public Stream<Individual<GT>> stream() {
+        return StreamSupport.stream(spliterator(), false);
     }
 
 }
