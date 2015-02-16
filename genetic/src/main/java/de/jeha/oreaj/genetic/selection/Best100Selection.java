@@ -20,24 +20,12 @@ public class Best100Selection<GT> implements EnvironmentalSelection<GT> {
     public Population<GT> select(final Population<GT> p) {
 
         List<Individual<GT>> all = new ArrayList<>();
-        List<Individual<GT>> selected = new ArrayList<>();
 
-        for (Individual<GT> i : p) {
-            all.add(i);
-        }
+        p.forEach(all::add);
+
         Collections.sort(all);
 
-        int i = 0;
-        for (Individual<GT> individual : all) {
-            if (i < configuration.getPopulationSize()) {
-                selected.add(individual);
-                i++;
-            } else {
-                break;
-            }
-        }
-
-        return new Population<>(selected);
+        return new Population<>(new ArrayList<>(all.subList(0, configuration.getPopulationSize())));
     }
 
 }
