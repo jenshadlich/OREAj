@@ -75,6 +75,7 @@ public class GeneticSolver<GT> {
 
         // environmental selection
         // TODO: store p' in a stack or something, maybe use memento pattern
+        // TODO: inject different selections
         this.p = new Best100Selection<GT>(this.c).select(this.p);
     }
 
