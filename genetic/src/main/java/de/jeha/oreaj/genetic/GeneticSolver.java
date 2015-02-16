@@ -46,7 +46,7 @@ public class GeneticSolver<GT> {
     }
 
     private List<Individual<GT>> evaluate(List<GT> as) {
-        return as.stream().map(x -> new Individual<>(x, evaluator.evaluate(x))).collect(Collectors.toList());
+        return as.stream().parallel().map(x -> new Individual<>(x, evaluator.evaluate(x))).collect(Collectors.toList());
     }
 
     private List<GT> initialize() {
