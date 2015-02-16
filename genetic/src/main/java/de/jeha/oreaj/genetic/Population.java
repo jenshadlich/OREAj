@@ -15,19 +15,13 @@ public class Population<GT> implements Iterable<Individual<GT>> {
 
     private final List<Individual<GT>> individuals;
 
-    public Population(List<Individual<GT>> is) {
+    public Population(List<Individual<GT>> individuals) {
         super();
-        this.individuals = is;
+        this.individuals = individuals;
     }
 
     public Individual<GT> best() {
-        Collections.sort(individuals);
-        try {
-            return individuals.get(0);
-        } catch (IndexOutOfBoundsException e) {
-            LOG.error("Error", e);
-            return null;
-        }
+        return individuals.stream().sorted().findFirst().orElse(null);
     }
 
     public void join(List<Individual<GT>> individuals) {
