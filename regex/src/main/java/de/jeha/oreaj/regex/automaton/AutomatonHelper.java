@@ -8,42 +8,45 @@ import java.util.Set;
 
 public class AutomatonHelper {
 
+    private static final int MAX_LOOPS = 1_000; // TODO: make magic number configurable?
+
     /**
-     * TODO: refactor to use iterator pattern
+     * TODO: refactor to use iterator pattern or Java 8 stream
      *
      * @param automaton automaton
      * @param limit     limit
      * @return list of accepted words
      */
     public static List<String> accepted(Automaton automaton, int limit) {
-        int len = 0;
-        List<String> acc = new ArrayList<>();
-        int cSize = 0;
+        int length = 0;
+        List<String> accepted = new ArrayList<>();
+        int fetchLength = 0;
         int cLoops = 0;
 
         add:
         while (true) {
             cLoops++;
 
-            // get all accepted strings for the given size
-            Set<String> curr = automaton.getStrings(cSize); // TODO: investigate why the set has a different order with Java 8
+            // get all accepted strings of the given length
+            final Set<String> currentBatch = automaton.getStrings(fetchLength);
 
             // no Strings for the given size
-            // TODO: refactor magic number
-            if (curr.isEmpty() && cLoops > 1_000)
+            if (currentBatch.isEmpty() && cLoops > MAX_LOOPS) {
                 break;
+            }
 
-            for (String s : curr) {
-                if (len < limit) {
-                    acc.add(s); // add to list of accepted strings
-                    len++;
+            for (String string : currentBatch) {
+                if (length < limit) {
+                    accepted.add(string); // add to list of accepted strings
+                    length++;
                 } else {
                     break add;
                 }
             }
-            cSize++;
+
+            fetchLength++;
         }
 
-        return acc;
+        return accepted;
     }
 }
