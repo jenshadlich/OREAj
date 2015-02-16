@@ -20,13 +20,11 @@ public class RXCrossover implements Crossover<RX> {
         return randomGlue(stMom, stDad);
     }
 
+    // -----------------------------------------------------------------------------------------------------------------
+
     private RX randomGlue(RX mom, RX dad) {
-        int r = GENERATOR.nextInt(1);
-        switch (r) {
-            case 0:
-                return new Dot(mom, dad);
-            default:
-                return new Union(mom, dad);
-        }
+        return GENERATOR.nextBoolean()
+                ? new Dot(mom, dad)
+                : new Union(mom, dad);
     }
 }
