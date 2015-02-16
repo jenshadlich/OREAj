@@ -6,58 +6,53 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class GeneticSolver<GT> {
 
     private static final Logger LOG = LoggerFactory.getLogger(GeneticSolver.class);
 
-    private final Configuration c;
-    private Population<GT> p = null;
-    private final Generator<GT> g;
-    private final Evaluator<GT> e;
-    private final Crossover<GT> x;
+    private final Configuration configuration;
+    private final Generator<GT> generator;
+    private final Evaluator<GT> evaluator;
+    private final Crossover<GT> crossover;
 
-    public GeneticSolver(final Configuration c, final Generator<GT> g,
-                         final Evaluator<GT> e, final Crossover<GT> x) {
-        this.c = c;
-        this.g = g;
-        this.e = e;
-        this.x = x;
+    private Population<GT> population = null;
+
+    public GeneticSolver(Configuration configuration, Generator<GT> generator, Evaluator<GT> evaluator, Crossover<GT> crossover) {
+        this.configuration = configuration;
+        this.generator = generator;
+        this.evaluator = evaluator;
+        this.crossover = crossover;
     }
 
     public Population<GT> evolve() {
         LOG.debug("evolve()");
-        p = new Population<>(evaluate(initialize()));
+        population = new Population<>(evaluate(initialize()));
 
         for (int i = 1; terminate(i); i++) {
             LOG.debug("generation = {}", i);
             step();
-            LOG.debug("best = {}", p.best().getFitness());
+            LOG.debug("best = {}", population.best().getFitness());
         }
 
-        return p;
+        return population;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
 
     private boolean terminate(int i) {
-        return i <= c.getMaxRuns() && p.best().getFitness() > c.getThreshold();
+        return i <= configuration.getMaxRuns() && population.best().getFitness() > configuration.getThreshold();
     }
 
     private List<Individual<GT>> evaluate(List<GT> as) {
-        List<Individual<GT>> is = new ArrayList<>();
-        for (GT g : as) {
-            double fitness = this.e.evaluate(g);
-            is.add(new Individual<>(g, fitness));
-        }
-        return is;
+        return as.stream().map(x -> new Individual<>(x, evaluator.evaluate(x))).collect(Collectors.toList());
     }
 
     private List<GT> initialize() {
         List<GT> is = new ArrayList<>();
-        for (int i = 0; i < c.getPopulationSize(); i++) {
-            GT individual = this.g.generate();
-            is.add(individual);
+        for (int i = 0; i < configuration.getPopulationSize(); i++) {
+            is.add(generator.generate());
         }
         return is;
     }
@@ -71,12 +66,13 @@ public class GeneticSolver<GT> {
         List<GT> candidates = variate();
 
         // evaluate
-        this.p.join(evaluate(candidates));
+        population.join(evaluate(candidates));
 
         // environmental selection
         // TODO: store p' in a stack or something, maybe use memento pattern
         // TODO: inject different selections
-        this.p = new Best100Selection<GT>(this.c).select(this.p);
+        population = new Best100Selection<GT>(configuration)
+                .select(population);
     }
 
     private List<GT> variate() {
@@ -86,11 +82,11 @@ public class GeneticSolver<GT> {
         // TODO: just xover
 
         GT prev = null;
-        for (Individual<GT> individual : this.p) {
+        for (Individual<GT> individual : population) {
             if (prev == null) {
                 prev = individual.getGenotype();
             } else {
-                GT child = x.crossover(prev, individual.getGenotype());
+                GT child = crossover.crossover(prev, individual.getGenotype());
                 prev = null;
                 candidates.add(child);
             }
