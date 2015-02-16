@@ -7,6 +7,7 @@ import de.jeha.oreaj.genetic.Population;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Best100Selection<GT> implements EnvironmentalSelection<GT> {
 
@@ -25,7 +26,7 @@ public class Best100Selection<GT> implements EnvironmentalSelection<GT> {
 
         Collections.sort(all);
 
-        return new Population<>(new ArrayList<>(all.subList(0, configuration.getPopulationSize())));
+        return new Population<>(all.stream().limit(configuration.getPopulationSize()).collect(Collectors.toList()));
     }
 
 }
