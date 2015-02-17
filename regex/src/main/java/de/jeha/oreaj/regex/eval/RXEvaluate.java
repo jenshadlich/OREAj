@@ -25,7 +25,7 @@ public class RXEvaluate implements Evaluator<RX> {
         return evaluate7(individual);
     }
 
-    double evaluate6(Automaton target, RX individual) {
+    double evaluate6(RX individual) {
 
         RegExp rx = new RegExp(individual.show());
         Automaton semantics = rx.toAutomaton();
