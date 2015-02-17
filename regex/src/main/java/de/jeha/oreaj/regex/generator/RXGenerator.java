@@ -40,9 +40,12 @@ public class RXGenerator implements Generator<RX> {
                     return new Star(full(d - 1, sigma));
             }
         } else {
-            // random Letter
-            return new Letter(sigma[GENERATOR.nextInt(sigma.length)]);
+            return randomLetter();
         }
+    }
+
+    private Letter randomLetter() {
+        return new Letter(sigma[GENERATOR.nextInt(sigma.length)]);
     }
 
 }
