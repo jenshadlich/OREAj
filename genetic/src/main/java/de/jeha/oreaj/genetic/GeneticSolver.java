@@ -19,7 +19,8 @@ public class GeneticSolver<GT> {
 
     private Population<GT> population = null;
 
-    public GeneticSolver(Configuration configuration, Generator<GT> generator, Evaluator<GT> evaluator, Crossover<GT> crossover) {
+    public GeneticSolver(Configuration configuration, Generator<GT> generator,
+                         Evaluator<GT> evaluator, Crossover<GT> crossover) {
         this.configuration = configuration;
         this.generator = generator;
         this.evaluator = evaluator;
@@ -45,16 +46,20 @@ public class GeneticSolver<GT> {
         return i <= configuration.getMaxRuns() && population.best().getFitness() > configuration.getThreshold();
     }
 
-    private List<Individual<GT>> evaluate(List<GT> as) {
-        return as.stream().parallel().map(x -> new Individual<>(x, evaluator.evaluate(x))).collect(Collectors.toList());
+    private List<Individual<GT>> evaluate(List<GT> individuals) {
+        return individuals
+                .stream()
+                .parallel()
+                .map(x -> new Individual<>(x, evaluator.evaluate(x)))
+                .collect(Collectors.toList());
     }
 
     private List<GT> initialize() {
-        List<GT> is = new ArrayList<>();
+        List<GT> individuals = new ArrayList<>();
         for (int i = 0; i < configuration.getPopulationSize(); i++) {
-            is.add(generator.generate());
+            individuals.add(generator.generate());
         }
-        return is;
+        return individuals;
     }
 
     private void step() {
@@ -81,13 +86,13 @@ public class GeneticSolver<GT> {
 
         // TODO: just xover
 
-        GT prev = null;
+        GT previous = null;
         for (Individual<GT> individual : population) {
-            if (prev == null) {
-                prev = individual.getGenotype();
+            if (previous == null) {
+                previous = individual.getGenotype();
             } else {
-                GT child = crossover.crossover(prev, individual.getGenotype());
-                prev = null;
+                GT child = crossover.crossover(previous, individual.getGenotype());
+                previous = null;
                 candidates.add(child);
             }
         }
