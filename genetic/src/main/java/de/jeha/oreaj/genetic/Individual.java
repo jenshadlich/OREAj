@@ -19,8 +19,8 @@ public class Individual<GT> implements Comparable<Individual<GT>> {
     }
 
     @Override
-    public int compareTo(Individual<GT> o) {
-        return Double.compare(this.getFitness(), o.getFitness());
+    public int compareTo(Individual<GT> other) {
+        return Double.compare(this.getFitness(), other.getFitness());
     }
 
 }
