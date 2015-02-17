@@ -5,11 +5,14 @@ import de.jeha.oreaj.regex.rx.Dot;
 import de.jeha.oreaj.regex.rx.RX;
 import de.jeha.oreaj.regex.rx.Union;
 import de.jeha.oreaj.regex.subtree.Subtree;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Random;
 
 public class RXCrossover implements Crossover<RX> {
 
+    private static final Logger LOG = LoggerFactory.getLogger(RXCrossover.class);
     private static final Random GENERATOR = new Random();
 
     @Override
@@ -17,14 +20,18 @@ public class RXCrossover implements Crossover<RX> {
         RX stMom = Subtree.randomSubtree(mom);
         RX stDad = Subtree.randomSubtree(dad);
 
-        return randomGlue(stMom, stDad);
+        return combineWithRandomGlue(stMom, stDad);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    private RX randomGlue(RX mom, RX dad) {
-        return GENERATOR.nextBoolean()
-                ? new Dot(mom, dad)
-                : new Union(mom, dad);
+    private RX combineWithRandomGlue(RX mom, RX dad) {
+        if (GENERATOR.nextBoolean()) {
+            LOG.debug("crossover glue = DOT");
+            return new Dot(mom, dad);
+        } else {
+            LOG.debug("crossover glue = UNION");
+            return new Union(mom, dad);
+        }
     }
 }
