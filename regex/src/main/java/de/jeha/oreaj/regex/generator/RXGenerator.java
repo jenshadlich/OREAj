@@ -27,17 +27,17 @@ public class RXGenerator implements Generator<RX> {
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    private RX full(int d, String[] sigma) {
-        if (d > 0) {
+    private RX full(int depth, String[] sigma) {
+        if (depth > 0) {
             // random Operation
             switch (GENERATOR.nextInt(3)) {
                 case 0:
-                    return new Dot(full(d - 1, sigma), full(d - 1, sigma));
+                    return new Dot(full(depth - 1, sigma), full(depth - 1, sigma));
                 case 1:
-                    return new Union(full(d - 1, sigma), full(d - 1, sigma));
+                    return new Union(full(depth - 1, sigma), full(depth - 1, sigma));
                 case 2:
                 default:
-                    return new Star(full(d - 1, sigma));
+                    return new Star(full(depth - 1, sigma));
             }
         } else {
             return randomLetter();
