@@ -27,10 +27,10 @@ public class RXCrossover implements Crossover<RX> {
 
     private RX combineWithRandomGlue(RX mom, RX dad) {
         if (GENERATOR.nextBoolean()) {
-            LOG.debug("crossover glue = DOT");
+            LOG.trace("crossover glue = DOT");
             return new Dot(mom, dad);
         } else {
-            LOG.debug("crossover glue = UNION");
+            LOG.trace("crossover glue = UNION");
             return new Union(mom, dad);
         }
     }
