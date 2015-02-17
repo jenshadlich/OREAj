@@ -21,7 +21,7 @@ public class Orea {
     private static final Logger LOG = LoggerFactory.getLogger(Orea.class);
 
     /**
-     * @param args
+     * @param args cmd line arguments (not used)
      */
     public static void main(String... args) {
         simpleTask1();

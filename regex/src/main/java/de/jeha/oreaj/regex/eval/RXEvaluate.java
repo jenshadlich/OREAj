@@ -8,12 +8,16 @@ import dk.brics.automaton.RegExp;
 
 public class RXEvaluate implements Evaluator<RX> {
 
-    private final Automaton target;
+    public static final int DEFAULT_AUTOMATON_ACCEPT_LIMIT = 10;
 
-    // private final Logger LOG = LoggerFactory.getLogger(RXEvaluate.class);
+    private final Automaton target;
+    private final int automatonAcceptLimit;
+
+    // private static final Logger LOG = LoggerFactory.getLogger(RXEvaluate.class);
 
     public RXEvaluate(Automaton target) {
         this.target = target;
+        this.automatonAcceptLimit = DEFAULT_AUTOMATON_ACCEPT_LIMIT;
     }
 
     @Override
@@ -52,7 +56,7 @@ public class RXEvaluate implements Evaluator<RX> {
     double weight(Automaton automaton) {
         double sum = 0.0;
 
-        for (String accepted : AutomatonHelper.accepted(automaton, 10)) {
+        for (String accepted : AutomatonHelper.accepted(automaton, automatonAcceptLimit)) {
             sum += Math.pow(2, -1 * accepted.length());
         }
         return sum;
