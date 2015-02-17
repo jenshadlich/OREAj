@@ -73,10 +73,15 @@ public class Orea {
     }
 
     private static void shuffleTask1() {
-        final String[] sigma = {"a", "b"};
-        final Automaton target = new RegExp("(aa)*$b*").toAutomaton();
+        final String[] sigma = {"a", "b", "c"};
+        //final Automaton target = new RegExp("(aa)*$b*").toAutomaton();
+        final Automaton target = new RegExp("(ab)$(bc)").toAutomaton(); // bcab + bacb + babc + abbc + abcb
 
-        Configuration configuration = new ConfigurationBuilder().setPopSize(1000).setMaxRuns(100).setThreshold(0.8).build();
+        Configuration configuration = new ConfigurationBuilder()
+                .setPopSize(1000)
+                .setMaxRuns(50)
+                .setThreshold(0.8)
+                .build();
 
         GeneticSolver<RX> solver = new GeneticSolver<>(
                 configuration,
