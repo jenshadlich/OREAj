@@ -35,6 +35,7 @@ public class RXGenerator implements Generator<RX> {
                     return new Dot(full(d - 1, sigma), full(d - 1, sigma));
                 case 1:
                     return new Union(full(d - 1, sigma), full(d - 1, sigma));
+                case 2:
                 default:
                     return new Star(full(d - 1, sigma));
             }
