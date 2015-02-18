@@ -4,6 +4,7 @@ import de.jeha.oreaj.genetic.Configuration;
 import de.jeha.oreaj.genetic.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.Population;
+import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import de.jeha.oreaj.regex.crossover.RXCrossover;
 import de.jeha.oreaj.regex.eval.RXEvaluate;
 import de.jeha.oreaj.regex.generator.RXGenerator;
@@ -31,7 +32,7 @@ public class Orea {
     // -----------------------------------------------------------------------------------------------------------------
 
     private static void simpleTask1() {
-        final String[] sigma = {"a", "b", "c"};
+        final String[] sigma = {"a", "b"};
         final Automaton target = new RegExp("(aa|ba)*").toAutomaton();
 
         Configuration configuration = new ConfigurationBuilder()
@@ -48,7 +49,7 @@ public class Orea {
 
         Population<RX> result = solver.evolve();
 
-        LOG.info("Winner = '{}'", result.best().getGenotype().show());
+        printResult(target, result);
     }
 
     private static void simpleTask2() {
@@ -69,7 +70,7 @@ public class Orea {
 
         Population<RX> result = solver.evolve();
 
-        LOG.info("Winner = '{}'", result.best().getGenotype().show());
+        printResult(target, result);
     }
 
     private static void shuffleTask1() {
@@ -91,7 +92,14 @@ public class Orea {
 
         Population<RX> result = solver.evolve();
 
-        LOG.info("Winner = '{}'", result.best().getGenotype().show());
+        printResult(target, result);
     }
 
+    private static void printResult(Automaton target, Population<RX> result) {
+        RX winner = result.best().getGenotype();
+        boolean isEquivalent = AutomatonHelper.isEquivalent(target, new RegExp(winner.show()).toAutomaton());
+
+        LOG.info("Winner = '{}'", winner.show());
+        LOG.info("Is equivalent? {}",  isEquivalent ? "YES" : "NO");
+    }
 }
