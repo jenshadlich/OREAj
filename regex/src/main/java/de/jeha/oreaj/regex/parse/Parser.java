@@ -9,17 +9,17 @@ class Parser {
 
     protected static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
     protected final String input;
-    protected String cursor;
+    protected String remainder;
     protected int errorPosition;
 
     protected Parser(final String input) {
         this.input = input;
-        this.cursor = input;
+        this.remainder = input;
     }
 
     protected String lookAhead() {
-        if (cursor.length() > 0) {
-            return cursor.substring(0, 1); // first character
+        if (remainder.length() > 0) {
+            return remainder.substring(0, 1); // first character
         }
         return "";
     }
@@ -29,12 +29,15 @@ class Parser {
      */
     protected void consume(String character) {
         LOG.debug("consume string '{}'", character);
-        cursor = cursor.substring(1); // the rest but the first character
+        remainder = remainder.substring(1); // the rest but the first character
     }
 
     protected boolean tryMatch(String character) {
-        LOG.debug("try match '{}' with '{}'", cursor, character);
-        if (cursor.startsWith(character)) {
+        LOG.debug("try match '{}' with '{}'", remainder, character);
+        while (remainder.startsWith(" ")) {
+            consume(" ");
+        }
+        if (remainder.startsWith(character)) {
             consume(character);
             return true;
         }

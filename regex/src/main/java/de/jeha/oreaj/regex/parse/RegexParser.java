@@ -22,9 +22,9 @@ public class RegexParser extends Parser {
 
     private RX atom() throws NoParseException {
         if (tryMatch("(")) {
-            RX x = expr();
+            RX rx = expr();
             match(")");
-            return x;
+            return rx;
         }
         return literal();
     }
@@ -33,45 +33,44 @@ public class RegexParser extends Parser {
         return stars(atom());
     }
 
-    private RX stars(RX x) {
+    private RX stars(RX rx) {
         if (tryMatch("*")) {
-            return stars(new Star(x));
+            return stars(new Star(rx));
         }
-        return x;
+        return rx;
     }
 
     private RX term() throws NoParseException {
-        RX x = factor();
+        RX rx = factor();
         String a = lookAhead();
         if (isLetter(a) || a.equals("(")) {
-            return new Dot(x, term());
+            return new Dot(rx, term());
         }
-        return x;
+        return rx;
     }
 
     private RX expr() throws NoParseException {
-        RX x = term();
+        RX rx = term();
         if (tryMatch("+")) {
-            return new Union(x, expr());
+            return new Union(rx, expr());
         }
         if (tryMatch(".")) {
-            return new Dot(x, expr());
+            return new Dot(rx, expr());
         }
         if (tryMatch("$")) {
-            return new Shuffle(x, expr());
+            return new Shuffle(rx, expr());
         }
-        return x;
+        return rx;
     }
 
     public RX parse() throws NoParseException {
-        RX z;
-        z = expr();
-        if (cursor.length() > 0) {
+        RX rx = expr();
+        if (remainder.length() > 0) {
             throw new NoParseException("Too many characters left");
         }
-        errorPosition = cursor.length() - input.length();
+        errorPosition = remainder.length() - input.length();
 
-        return z;
+        return rx;
     }
 
 }

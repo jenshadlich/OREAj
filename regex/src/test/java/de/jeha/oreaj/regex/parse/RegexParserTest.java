@@ -19,6 +19,12 @@ public class RegexParserTest {
         assertEquals(expected.show(), new RegexParser("(aa)*$b*").parse().show());
     }
 
+    @Test
+    public void testParseWithShuffleAndSpace() throws NoParseException {
+        RX expected = new Shuffle(new Letter("a"), new Letter("b"));
+        assertEquals(expected.show(), new RegexParser("a  $  b").parse().show());
+    }
+
     @Test(expected = NoParseException.class)
     public void testNoParseException1() throws NoParseException {
         new RegexParser("123").parse();
