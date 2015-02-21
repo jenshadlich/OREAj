@@ -40,4 +40,15 @@ public class RegexParserTest {
         new RegexParser("a)").parse();
     }
 
+    @Test
+    public void testNoParseException4() {
+        String exceptionMessage = "";
+        try {
+            new RegexParser("a)").parse();
+        } catch (NoParseException e) {
+            exceptionMessage = e.getMessage();
+        }
+        assertEquals("Too many characters left (pos 2)", exceptionMessage);
+    }
+
 }
