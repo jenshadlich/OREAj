@@ -10,7 +10,6 @@ class Parser {
     protected static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
     protected final String input;
     protected String remainder;
-    protected int errorPosition;
 
     protected Parser(final String input) {
         this.input = input;

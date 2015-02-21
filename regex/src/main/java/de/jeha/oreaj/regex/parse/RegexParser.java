@@ -66,9 +66,9 @@ public class RegexParser extends Parser {
     public RX parse() throws NoParseException {
         RX rx = expr();
         if (remainder.length() > 0) {
-            throw new NoParseException("Too many characters left");
+            int errorPosition = (input.length() - remainder.length()) + 1;
+            throw new NoParseException("Too many characters left (pos " + errorPosition + ")");
         }
-        errorPosition = remainder.length() - input.length();
 
         return rx;
     }
