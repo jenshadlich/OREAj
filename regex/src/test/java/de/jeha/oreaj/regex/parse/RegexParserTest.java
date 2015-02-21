@@ -41,7 +41,7 @@ public class RegexParserTest {
     }
 
     @Test
-    public void testNoParseException4() {
+    public void testNoParseExceptionMessage() {
         String exceptionMessage = "";
         try {
             new RegexParser("a)").parse();
