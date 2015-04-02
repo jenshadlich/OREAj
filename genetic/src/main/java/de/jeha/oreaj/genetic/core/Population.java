@@ -19,6 +19,10 @@ public class Population<GT> implements Iterable<Individual<GT>> {
         this.individuals = individuals;
     }
 
+    public int size() {
+        return individuals.size();
+    }
+
     public Individual<GT> best() {
         return individuals.stream().sorted().findFirst().orElse(null);
     }
