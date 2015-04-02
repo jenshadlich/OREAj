@@ -5,6 +5,7 @@ import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.core.Population;
 import de.jeha.oreaj.genetic.selection.environmental.Best100Selection;
+import de.jeha.oreaj.genetic.selection.parental.LinearRecombination;
 import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import de.jeha.oreaj.regex.crossover.RandomTreeCrossover;
 import de.jeha.oreaj.regex.evaluator.RXEvaluate;
@@ -16,7 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * Optimization of Regular Expressions using Evolutionary Algorithms. Main program.
  *
+ * @author jenshadlich@googlemail.com
  */
 public class Orea {
 
@@ -46,7 +49,7 @@ public class Orea {
                 configuration,
                 new RXGenerator(3, sigma),
                 new RXEvaluate(target),
-                new RandomTreeCrossover(),
+                new LinearRecombination<>(new RandomTreeCrossover()),
                 new Best100Selection<>(configuration));
 
         Population<RX> result = solver.evolve();
@@ -68,7 +71,7 @@ public class Orea {
                 configuration,
                 new RXGenerator(3, sigma),
                 new RXEvaluate(target),
-                new RandomTreeCrossover(),
+                new LinearRecombination<>(new RandomTreeCrossover()),
                 new Best100Selection<>(configuration));
 
         Population<RX> result = solver.evolve();
@@ -91,7 +94,7 @@ public class Orea {
                 configuration,
                 new RXGenerator(3, sigma),
                 new RXEvaluate(target),
-                new RandomTreeCrossover(),
+                new LinearRecombination<>(new RandomTreeCrossover()),
                 new Best100Selection<>(configuration));
 
         Population<RX> result = solver.evolve();

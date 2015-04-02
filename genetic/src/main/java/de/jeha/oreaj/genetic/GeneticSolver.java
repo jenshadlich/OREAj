@@ -2,7 +2,7 @@ package de.jeha.oreaj.genetic;
 
 import de.jeha.oreaj.genetic.core.*;
 import de.jeha.oreaj.genetic.selection.EnvironmentalSelection;
-import de.jeha.oreaj.genetic.selection.parental.LinearRecombination;
+import de.jeha.oreaj.genetic.selection.ParentalSelection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 /**
  * Genetic Programming algorithm to solve the given problem.
  *
- * @author jenshadlich@googlemail.com
  * @param <GT> genotype
+ * @author jenshadlich@googlemail.com
  */
 public class GeneticSolver<GT> {
 
@@ -23,18 +23,19 @@ public class GeneticSolver<GT> {
     private final Configuration configuration;
     private final Generator<GT> generator;
     private final Evaluator<GT> evaluator;
-    private final Crossover<GT> crossover;
+    private final ParentalSelection<GT> parentalSelection;
     private final EnvironmentalSelection<GT> environmentalSelection;
 
     private Population<GT> population = null;
 
     public GeneticSolver(Configuration configuration, Generator<GT> generator,
-                         Evaluator<GT> evaluator, Crossover<GT> crossover,
+                         Evaluator<GT> evaluator,
+                         ParentalSelection<GT> parentalSelection,
                          EnvironmentalSelection<GT> environmentalSelection) {
         this.configuration = configuration;
         this.generator = generator;
         this.evaluator = evaluator;
-        this.crossover = crossover;
+        this.parentalSelection = parentalSelection;
         this.environmentalSelection = environmentalSelection;
     }
 
@@ -52,7 +53,7 @@ public class GeneticSolver<GT> {
             LOG.debug("generation = {}", i);
 
             // parental selection & variation
-            List<GT> candidates = new LinearRecombination<>(crossover).select(population);
+            List<GT> candidates = parentalSelection.select(population);
 
             // evaluate candidates and join with original population
             population.join(evaluate(candidates));
