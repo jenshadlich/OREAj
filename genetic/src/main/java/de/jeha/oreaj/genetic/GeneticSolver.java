@@ -1,9 +1,7 @@
 package de.jeha.oreaj.genetic;
 
 import de.jeha.oreaj.genetic.core.*;
-import de.jeha.oreaj.genetic.selection.environmental.Best100Selection;
-import de.jeha.oreaj.genetic.core.Individual;
-import de.jeha.oreaj.genetic.core.Population;
+import de.jeha.oreaj.genetic.selection.EnvironmentalSelection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,15 +17,18 @@ public class GeneticSolver<GT> {
     private final Generator<GT> generator;
     private final Evaluator<GT> evaluator;
     private final Crossover<GT> crossover;
+    private final EnvironmentalSelection<GT> environmentalSelection;
 
     private Population<GT> population = null;
 
     public GeneticSolver(Configuration configuration, Generator<GT> generator,
-                         Evaluator<GT> evaluator, Crossover<GT> crossover) {
+                         Evaluator<GT> evaluator, Crossover<GT> crossover,
+                         EnvironmentalSelection<GT> environmentalSelection) {
         this.configuration = configuration;
         this.generator = generator;
         this.evaluator = evaluator;
         this.crossover = crossover;
+        this.environmentalSelection = environmentalSelection;
     }
 
     public Population<GT> evolve() {
@@ -75,14 +76,12 @@ public class GeneticSolver<GT> {
         // parental selection & variation
         List<GT> candidates = variate();
 
-        // evaluate
+        // evaluate candidates and join with original population
         population.join(evaluate(candidates));
 
         // environmental selection
         // TODO: store p' in a stack or something, maybe use memento pattern
-        // TODO: inject different selections
-        population = new Best100Selection<GT>(configuration)
-                .select(population);
+        population = environmentalSelection.select(population);
     }
 
     private List<GT> variate() {
