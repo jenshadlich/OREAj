@@ -1,6 +1,6 @@
 package de.jeha.oreaj.genetic;
 
-import de.jeha.oreaj.genetic.selection.Best100Selection;
+import de.jeha.oreaj.genetic.selection.environmental.Best100Selection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
