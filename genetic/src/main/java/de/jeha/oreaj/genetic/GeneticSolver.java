@@ -10,6 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Genetic Programming algorithm to solve the given problem.
+ *
+ * @author jenshadlich@googlemail.com
+ * @param <GT> genotype
+ */
 public class GeneticSolver<GT> {
 
     private static final Logger LOG = LoggerFactory.getLogger(GeneticSolver.class);
@@ -33,7 +39,7 @@ public class GeneticSolver<GT> {
     }
 
     /**
-     * Let the genetic programming algorithm run to solve the given problem.
+     * Evolve.
      *
      * @return final population after termination
      */
