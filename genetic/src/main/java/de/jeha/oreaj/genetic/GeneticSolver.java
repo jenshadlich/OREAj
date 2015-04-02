@@ -2,6 +2,7 @@ package de.jeha.oreaj.genetic;
 
 import de.jeha.oreaj.genetic.core.*;
 import de.jeha.oreaj.genetic.selection.EnvironmentalSelection;
+import de.jeha.oreaj.genetic.selection.parental.LinearRecombination;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -74,7 +75,7 @@ public class GeneticSolver<GT> {
         // TODO
 
         // parental selection & variation
-        List<GT> candidates = variate();
+        List<GT> candidates = new LinearRecombination<>(crossover).select(population);
 
         // evaluate candidates and join with original population
         population.join(evaluate(candidates));
@@ -82,26 +83,6 @@ public class GeneticSolver<GT> {
         // environmental selection
         // TODO: store p' in a stack or something, maybe use memento pattern
         population = environmentalSelection.select(population);
-    }
-
-    private List<GT> variate() {
-
-        List<GT> candidates = new ArrayList<>();
-
-        // TODO: just xover
-
-        GT previous = null;
-        for (Individual<GT> individual : population) {
-            if (previous == null) {
-                previous = individual.getGenotype();
-            } else {
-                GT child = crossover.crossover(previous, individual.getGenotype());
-                previous = null;
-                candidates.add(child);
-            }
-        }
-
-        return candidates;
     }
 
 }
