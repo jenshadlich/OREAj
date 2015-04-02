@@ -52,7 +52,7 @@ public class GeneticSolver<GT> {
             population.join(evaluate(candidates));
 
             // environmental selection
-            // TODO: store p' in a stack or something, maybe use memento pattern
+            // TODO: store newPopulation in a stack or something, maybe use memento pattern
             Population<GT> newPopulation = environmentalSelection.select(population);
             LOG.debug("environmental selection, size = {} -> {}", population.size(), newPopulation.size());
             population = newPopulation;
