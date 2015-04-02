@@ -1,8 +1,8 @@
 package de.jeha.oreaj.genetic.selection.environmental;
 
-import de.jeha.oreaj.genetic.Configuration;
-import de.jeha.oreaj.genetic.Individual;
-import de.jeha.oreaj.genetic.Population;
+import de.jeha.oreaj.genetic.core.Configuration;
+import de.jeha.oreaj.genetic.core.Individual;
+import de.jeha.oreaj.genetic.core.Population;
 import de.jeha.oreaj.genetic.selection.EnvironmentalSelection;
 
 import java.util.List;

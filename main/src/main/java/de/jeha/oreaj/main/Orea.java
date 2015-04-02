@@ -1,9 +1,9 @@
 package de.jeha.oreaj.main;
 
-import de.jeha.oreaj.genetic.Configuration;
-import de.jeha.oreaj.genetic.ConfigurationBuilder;
+import de.jeha.oreaj.genetic.core.Configuration;
+import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.GeneticSolver;
-import de.jeha.oreaj.genetic.Population;
+import de.jeha.oreaj.genetic.core.Population;
 import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import de.jeha.oreaj.regex.crossover.RXCrossover;
 import de.jeha.oreaj.regex.eval.RXEvaluate;

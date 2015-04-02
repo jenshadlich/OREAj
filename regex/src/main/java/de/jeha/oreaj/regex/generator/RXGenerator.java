@@ -1,6 +1,6 @@
 package de.jeha.oreaj.regex.generator;
 
-import de.jeha.oreaj.genetic.Generator;
+import de.jeha.oreaj.genetic.core.Generator;
 import de.jeha.oreaj.regex.rx.*;
 
 import java.util.Random;

@@ -1,6 +1,6 @@
 package de.jeha.oreaj.regex.eval;
 
-import de.jeha.oreaj.genetic.Evaluator;
+import de.jeha.oreaj.genetic.core.Evaluator;
 import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import de.jeha.oreaj.regex.rx.RX;
 import dk.brics.automaton.Automaton;

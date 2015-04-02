@@ -1,6 +1,6 @@
 package de.jeha.oreaj.regex.generator;
 
-import de.jeha.oreaj.genetic.Generator;
+import de.jeha.oreaj.genetic.core.Generator;
 import de.jeha.oreaj.regex.rx.RX;
 import org.junit.Test;
 import org.slf4j.Logger;

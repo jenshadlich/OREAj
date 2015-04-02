@@ -1,6 +1,6 @@
 package de.jeha.oreaj.regex.crossover;
 
-import de.jeha.oreaj.genetic.Crossover;
+import de.jeha.oreaj.genetic.core.Crossover;
 import de.jeha.oreaj.regex.rx.Dot;
 import de.jeha.oreaj.regex.rx.RX;
 import de.jeha.oreaj.regex.rx.Union;

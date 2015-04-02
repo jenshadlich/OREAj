@@ -1,6 +1,6 @@
 package de.jeha.oreaj.regex.mutator;
 
-import de.jeha.oreaj.genetic.Mutator;
+import de.jeha.oreaj.genetic.core.Mutator;
 import de.jeha.oreaj.regex.parse.NoParseException;
 import de.jeha.oreaj.regex.parse.RegexParser;
 import de.jeha.oreaj.regex.rx.RX;

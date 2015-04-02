@@ -1,4 +1,4 @@
-package de.jeha.oreaj.genetic;
+package de.jeha.oreaj.genetic.core;
 
 public interface Mutator<GT> {
 
