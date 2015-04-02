@@ -1,4 +1,4 @@
-package de.jeha.oreaj.regex.eval;
+package de.jeha.oreaj.regex.evaluator;
 
 import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import dk.brics.automaton.Automaton;
