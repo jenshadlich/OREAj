@@ -31,21 +31,23 @@ public class GeneticSolver<GT> {
     }
 
     public Population<GT> evolve() {
-        LOG.debug("evolve()");
+        LOG.info("initialize population");
         population = new Population<>(evaluate(initialize()));
 
-        for (int i = 1; terminate(i); i++) {
+        LOG.info("start evolution");
+        for (int i = 1; checkIfTerminate(i); i++) {
             LOG.debug("generation = {}", i);
             step();
             LOG.debug("best = {}", population.best().getFitness());
         }
 
+        LOG.info("done with evolution");
         return population;
     }
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    private boolean terminate(int i) {
+    private boolean checkIfTerminate(int i) {
         return i <= configuration.getMaxRuns() && population.best().getFitness() > configuration.getThreshold();
     }
 
