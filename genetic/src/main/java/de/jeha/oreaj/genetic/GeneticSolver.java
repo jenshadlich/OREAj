@@ -32,6 +32,11 @@ public class GeneticSolver<GT> {
         this.environmentalSelection = environmentalSelection;
     }
 
+    /**
+     * Let the genetic programming algorithm run to solve the given problem.
+     *
+     * @return final population after termination
+     */
     public Population<GT> evolve() {
         LOG.info("initialize population");
         population = new Population<>(evaluate(initialize()));
@@ -39,7 +44,19 @@ public class GeneticSolver<GT> {
         LOG.info("start evolution");
         for (int i = 1; checkIfTerminate(i); i++) {
             LOG.debug("generation = {}", i);
-            step();
+
+            // parental selection & variation
+            List<GT> candidates = new LinearRecombination<>(crossover).select(population);
+
+            // evaluate candidates and join with original population
+            population.join(evaluate(candidates));
+
+            // environmental selection
+            // TODO: store p' in a stack or something, maybe use memento pattern
+            Population<GT> newPopulation = environmentalSelection.select(population);
+            LOG.debug("environmental selection, size = {} -> {}", population.size(), newPopulation.size());
+            population = newPopulation;
+
             LOG.debug("best = {}", population.best().getFitness());
         }
 
@@ -57,7 +74,7 @@ public class GeneticSolver<GT> {
         return individuals
                 .stream()
                 .parallel()
-                .map(x -> new Individual<>(x, evaluator.evaluate(x)))
+                .map(genotype -> new Individual<>(genotype, evaluator.evaluate(genotype)))
                 .collect(Collectors.toList());
     }
 
@@ -67,22 +84,6 @@ public class GeneticSolver<GT> {
             individuals.add(generator.generate());
         }
         return individuals;
-    }
-
-    private void step() {
-        LOG.debug("step()");
-
-        // TODO
-
-        // parental selection & variation
-        List<GT> candidates = new LinearRecombination<>(crossover).select(population);
-
-        // evaluate candidates and join with original population
-        population.join(evaluate(candidates));
-
-        // environmental selection
-        // TODO: store p' in a stack or something, maybe use memento pattern
-        population = environmentalSelection.select(population);
     }
 
 }
