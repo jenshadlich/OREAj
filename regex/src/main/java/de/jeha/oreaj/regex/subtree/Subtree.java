@@ -12,8 +12,8 @@ public class Subtree {
 
     public static List<RX> subtrees(RX root) {
         List<RX> subtrees = new ArrayList<>();
-        for (RX i : root) {
-            subtrees.add(i);
+        for (RX rx : root) {
+            subtrees.add(rx);
         }
         return subtrees;
     }
