@@ -13,4 +13,8 @@ public class Shuffle extends Op2 {
         return GLUE_STRING;
     }
 
+    @Override
+    public RX deepClone() {
+        return new Shuffle(getLeft(), getRight());
+    }
 }

@@ -10,4 +10,9 @@ public class Star extends Op1 {
     public String show() {
         return "(" + this.getDown().show() + ")*";
     }
+
+    @Override
+    public RX deepClone() {
+        return new Star(getDown());
+    }
 }

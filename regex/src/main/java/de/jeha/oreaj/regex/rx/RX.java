@@ -8,4 +8,6 @@ public interface RX extends Iterable<RX> {
 
 	List<RX> siblings();
 
+    RX deepClone();
+
 }

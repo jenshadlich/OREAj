@@ -13,4 +13,8 @@ public class Dot extends Op2 {
         return GLUE_STRING_DOT;
     }
 
+    @Override
+    public RX deepClone() {
+        return new Dot(getLeft(), getRight());
+    }
 }

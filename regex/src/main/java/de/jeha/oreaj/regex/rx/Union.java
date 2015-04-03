@@ -13,4 +13,8 @@ public class Union extends Op2 {
         return GLUE_STRING;
     }
 
+    @Override
+    public RX deepClone() {
+        return new Union(getLeft(), getRight());
+    }
 }

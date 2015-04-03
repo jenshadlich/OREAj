@@ -21,4 +21,8 @@ public class Letter extends AbstractRX {
         return Collections.emptyList();
     }
 
+    @Override
+    public RX deepClone() {
+        return new Letter(value);
+    }
 }
