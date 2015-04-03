@@ -16,6 +16,7 @@ public class Clone implements Mutator<RX> {
 
     @Override
     public RX mutate(RX genotype) {
+        // TODO: replace with call to deepClone() but first find out why test case fails with RXGenerator
         try {
             return new RegexParser(genotype.show()).parse();
         } catch (NoParseException e) {
