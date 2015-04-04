@@ -19,4 +19,11 @@ public abstract class Op1 extends AbstractRX {
     final public List<RX> siblings() {
         return Arrays.asList(getDown());
     }
+
+    @Override
+    public void substitute(RX rx, RX substitute) {
+        assert down.equals(rx);
+        down = substitute;
+    }
+
 }

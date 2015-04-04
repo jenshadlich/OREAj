@@ -11,4 +11,8 @@ public abstract class AbstractRX implements RX {
         return new PreorderIterator(this);
     }
 
+    @Override
+    public void substitute(RX rx, RX substitute) {
+        // do nothing by default
+    }
 }

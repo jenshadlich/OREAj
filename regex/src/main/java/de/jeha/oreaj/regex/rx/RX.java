@@ -24,4 +24,11 @@ public interface RX extends Iterable<RX> {
      */
     RX deepClone();
 
+    /**
+     * TODO: Not so nice, find alternative solution.
+     *
+     * @param rx
+     * @param substitute
+     */
+    void substitute(RX rx, RX substitute);
 }

@@ -25,4 +25,5 @@ public class Letter extends AbstractRX {
     public RX deepClone() {
         return new Letter(value);
     }
+
 }

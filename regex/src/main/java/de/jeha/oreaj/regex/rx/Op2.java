@@ -32,4 +32,14 @@ public abstract class Op2 extends AbstractRX {
     final public List<RX> siblings() {
         return Arrays.asList(getRight(), getLeft());
     }
+
+    @Override
+    public void substitute(RX rx, RX substitute) {
+        assert left.equals(rx) || right.equals(rx);
+        if (left.equals(rx)) {
+            left = substitute;
+        } else {
+            right = substitute;
+        }
+    }
 }

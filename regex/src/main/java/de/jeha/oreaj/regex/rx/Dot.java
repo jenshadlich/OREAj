@@ -17,4 +17,5 @@ public class Dot extends Op2 {
     public RX deepClone() {
         return new Dot(getLeft(), getRight());
     }
+
 }
