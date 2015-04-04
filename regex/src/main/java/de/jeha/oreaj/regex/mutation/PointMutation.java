@@ -36,14 +36,18 @@ public class PointMutation implements Mutation<RX> {
             } else {
                 // the 'child' must be a Letter
                 // enforce to not replace a Letter with a equal Letter
-                Set<String> sigmaForSubstitution = new HashSet<>(Arrays.asList(sigma));
+                Set<String> sigmaSetForSubstitution = new HashSet<>(Arrays.asList(sigma));
                 if (sigma.length > 1) {
                     final String terminalToExclude = child.show();
-                    sigmaForSubstitution.remove(terminalToExclude);
+                    sigmaSetForSubstitution.remove(terminalToExclude);
                 }
-                String[] sigma = sigmaForSubstitution.toArray(new String[0]);
-                Letter letter = new Letter(sigma[GENERATOR.nextInt(sigma.length)]);
-                parent.substitute(child, letter);
+                String[] sigmaForSubstitution = sigmaSetForSubstitution.toArray(new String[0]);
+                Letter letter = new Letter(sigmaForSubstitution[GENERATOR.nextInt(sigmaForSubstitution.length)]);
+                if (parent.equals(child) && parent.equals(mutant)) {
+                    mutant = letter;
+                } else {
+                    parent.substitute(child, letter);
+                }
                 break;
             }
         } while (true);
