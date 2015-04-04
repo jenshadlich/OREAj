@@ -1,4 +1,4 @@
-package de.jeha.oreaj.regex.mutator;
+package de.jeha.oreaj.regex.mutation;
 
 import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
