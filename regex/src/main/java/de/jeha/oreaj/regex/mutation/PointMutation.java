@@ -1,9 +1,13 @@
 package de.jeha.oreaj.regex.mutation;
 
 import de.jeha.oreaj.genetic.core.Mutation;
+import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author jenshadlich@googlemail.com
@@ -12,20 +16,37 @@ public class PointMutation implements Mutation<RX> {
 
     private static final java.util.Random GENERATOR = new java.util.Random();
 
+    private final String[] sigma;
+
+    public PointMutation(String[] sigma) {
+        this.sigma = sigma;
+    }
+
     @Override
     public RX mutate(RX rx) {
         RX mutant = rx.deepClone();
-        RX next = mutant;
+        RX parent = mutant;
+        RX child = mutant;
         do {
-            final List<RX> siblings = next.siblings();
+            final List<RX> siblings = child.siblings();
             if (siblings.size() > 0) {
                 // find a path
-                next = siblings.get(GENERATOR.nextInt(siblings.size()));
+                parent = child;
+                child = siblings.get(GENERATOR.nextInt(siblings.size()));
             } else {
-                // TODO: replace terminal symbol Letter by different instance, needs to know 'sigma'
+                // the 'child' must be a Letter
+                // enforce to not replace a Letter with a equal Letter
+                Set<String> sigmaForSubstitution = new HashSet<>(Arrays.asList(sigma));
+                if (sigma.length > 1) {
+                    final String terminalToExclude = child.show();
+                    sigmaForSubstitution.remove(terminalToExclude);
+                }
+                String[] sigma = sigmaForSubstitution.toArray(new String[0]);
+                Letter letter = new Letter(sigma[GENERATOR.nextInt(sigma.length)]);
+                parent.substitute(child, letter);
                 break;
             }
-        } while(true);
+        } while (true);
 
         return mutant;
     }
