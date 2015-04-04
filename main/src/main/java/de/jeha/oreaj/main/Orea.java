@@ -61,12 +61,12 @@ public class Orea {
     }
 
     private static void simpleTask2() {
-        final String[] sigma = {"a", "b"};
+        final String[] sigma = {"a", "b", "c", "d"};
         final Automaton target = new RegExp("(ab|bb)*").toAutomaton();
 
         Configuration configuration = new ConfigurationBuilder()
                 .setPopulationMaxSize(1000)
-                .setMaxRuns(100)
+                .setMaxRuns(10000)
                 .setThreshold(0.1)
                 .build();
 
