@@ -3,7 +3,7 @@ package de.jeha.oreaj.genetic.core;
 public class ConfigurationBuilder {
 
     private int maxRuns = 10;
-    private int popSize = 100;
+    private int populationMaxSize = 100;
     private double threshold = 0.01;
     
     public ConfigurationBuilder setMaxRuns(int maxRuns) {
@@ -11,8 +11,8 @@ public class ConfigurationBuilder {
         return this;
     }
 
-    public ConfigurationBuilder setPopSize(int popSize) {
-        this.popSize = popSize;
+    public ConfigurationBuilder setPopulationMaxSize(int populationMaxSize) {
+        this.populationMaxSize = populationMaxSize;
         return this;
     }
 
@@ -22,7 +22,7 @@ public class ConfigurationBuilder {
     }
 
     public Configuration build() {
-        return new Configuration(maxRuns, popSize, threshold);
+        return new Configuration(maxRuns, populationMaxSize, threshold);
     }
 
 }

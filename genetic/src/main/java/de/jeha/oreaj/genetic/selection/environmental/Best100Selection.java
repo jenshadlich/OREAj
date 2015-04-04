@@ -26,7 +26,7 @@ public class Best100Selection<GT> implements EnvironmentalSelection<GT> {
 
         return new Population<>(populationRankedByFitness
                 .stream()
-                .limit(configuration.getPopulationSize())
+                .limit(configuration.getPopulationMaxSize())
                 .collect(Collectors.toList()));
     }
 

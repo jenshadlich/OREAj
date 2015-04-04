@@ -29,7 +29,8 @@ public class Orea {
      * @param args cmd line arguments (not used)
      */
     public static void main(String... args) {
-        simpleTask1();
+        //simpleTask1();
+        simpleTask2();
         //shuffleTask1();
     }
 
@@ -40,7 +41,7 @@ public class Orea {
         final Automaton target = new RegExp("(aa|ba)*").toAutomaton();
 
         Configuration configuration = new ConfigurationBuilder()
-                .setPopSize(1000)
+                .setPopulationMaxSize(1000)
                 .setMaxRuns(100)
                 .setThreshold(0.8)
                 .build();
@@ -62,7 +63,7 @@ public class Orea {
         final Automaton target = new RegExp("(ab|bb)*").toAutomaton();
 
         Configuration configuration = new ConfigurationBuilder()
-                .setPopSize(1000)
+                .setPopulationMaxSize(1000)
                 .setMaxRuns(100)
                 .setThreshold(0.8)
                 .build();
@@ -85,7 +86,7 @@ public class Orea {
         final Automaton target = new RegExp("(ab)$(bc)").toAutomaton(); // bcab + bacb + babc + abbc + abcb
 
         Configuration configuration = new ConfigurationBuilder()
-                .setPopSize(1000)
+                .setPopulationMaxSize(1000)
                 .setMaxRuns(50)
                 .setThreshold(0.8)
                 .build();

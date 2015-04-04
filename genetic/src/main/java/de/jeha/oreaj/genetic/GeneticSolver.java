@@ -87,7 +87,7 @@ public class GeneticSolver<GT> {
 
     private List<GT> initialize() {
         List<GT> individuals = new ArrayList<>();
-        for (int i = 0; i < configuration.getPopulationSize(); i++) {
+        for (int i = 0; i < configuration.getPopulationMaxSize(); i++) {
             individuals.add(generator.generate());
         }
         return individuals;
