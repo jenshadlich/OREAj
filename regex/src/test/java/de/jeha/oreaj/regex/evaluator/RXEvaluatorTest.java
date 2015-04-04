@@ -11,7 +11,7 @@ import static org.junit.Assert.assertEquals;
 public class RXEvaluatorTest {
 
     @Test
-    public void testEvaluate6() {
+    public void test() {
         Evaluator<RX> evaluator = new RXEvaluator(new RegExp("(a|b)*").toAutomaton());
         double result = evaluator.evaluate(new Letter("a"));
 
