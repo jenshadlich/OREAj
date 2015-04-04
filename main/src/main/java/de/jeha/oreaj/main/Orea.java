@@ -67,7 +67,7 @@ public class Orea {
         Configuration configuration = new ConfigurationBuilder()
                 .setPopulationMaxSize(1000)
                 .setMaxRuns(100)
-                .setThreshold(0.8)
+                .setThreshold(0.1)
                 .build();
 
         GeneticSolver<RX> solver = new GeneticSolver<>(
