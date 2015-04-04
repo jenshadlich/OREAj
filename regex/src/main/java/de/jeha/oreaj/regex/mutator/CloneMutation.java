@@ -1,6 +1,6 @@
 package de.jeha.oreaj.regex.mutator;
 
-import de.jeha.oreaj.genetic.core.Mutator;
+import de.jeha.oreaj.genetic.core.Mutation;
 import de.jeha.oreaj.regex.parse.NoParseException;
 import de.jeha.oreaj.regex.parse.RegexParser;
 import de.jeha.oreaj.regex.rx.RX;
@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class Clone implements Mutator<RX> {
+public class CloneMutation implements Mutation<RX> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(Clone.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CloneMutation.class);
 
     @Override
     public RX mutate(RX genotype) {
