@@ -11,6 +11,7 @@ import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import de.jeha.oreaj.regex.crossover.RandomTreeCrossover;
 import de.jeha.oreaj.regex.evaluator.RXEvaluator;
 import de.jeha.oreaj.regex.generator.RXGenerator;
+import de.jeha.oreaj.regex.mutation.CloneMutation;
 import de.jeha.oreaj.regex.mutation.PointMutation;
 import de.jeha.oreaj.regex.mutation.RandomMutation;
 import de.jeha.oreaj.regex.rx.RX;
@@ -78,7 +79,7 @@ public class Orea {
                 new LinearVariation<>(
                         new RandomTreeCrossover(),
                         new RandomMutation(
-                                new PointMutation(sigma)
+                                new PointMutation(sigma), new CloneMutation()
                         )
                 ),
                 new Best100Selection<>(configuration));
