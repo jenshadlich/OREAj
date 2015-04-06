@@ -11,6 +11,7 @@
     </appender>
 
     <logger name="de.jeha" level="DEBUG" />
+    <logger name="de.jeha.oreaj.regex.parse" level="INFO" />
 
     <root level="INFO">
         <appender-ref ref="STDOUT" />
