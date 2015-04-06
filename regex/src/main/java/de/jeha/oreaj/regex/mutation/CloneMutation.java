@@ -20,7 +20,7 @@ public class CloneMutation implements Mutation<RX> {
         try {
             return new RegexParser(genotype.show()).parse();
         } catch (NoParseException e) {
-            LOG.warn("Failed to clone rx", e);
+            LOG.warn(String.format("Failed to clone rx '%s'", genotype.show()), e);
             return null;
         }
     }
