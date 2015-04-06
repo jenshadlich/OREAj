@@ -23,6 +23,7 @@ public class RandomMutationTest {
     public void test() {
 
         RX rx = new Star(new Letter("a"));
+        @SuppressWarnings("unchecked")
         Mutation<RX> randomMutation = new RandomMutation(
                 genotype -> {
                     randomMutation1Called++;
