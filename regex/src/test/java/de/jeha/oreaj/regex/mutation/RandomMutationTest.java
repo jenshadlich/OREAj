@@ -14,7 +14,8 @@ import static org.junit.Assert.assertTrue;
  */
 public class RandomMutationTest {
 
-    private static final int N = 10;
+    private static final int CALLS = 10;
+
     private int randomMutation1Called = 0;
     private int randomMutation2Called = 0;
 
@@ -32,12 +33,12 @@ public class RandomMutationTest {
                     return null;
                 });
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < CALLS; i++) {
             randomMutation.mutate(rx);
         }
 
         assertTrue(randomMutation1Called > 0);
         assertTrue(randomMutation2Called > 0);
-        assertEquals(N, randomMutation1Called + randomMutation2Called);
+        assertEquals(CALLS, randomMutation1Called + randomMutation2Called);
     }
 }
