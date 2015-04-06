@@ -21,7 +21,7 @@ public abstract class Op1 extends AbstractRX {
     }
 
     @Override
-    public void substitute(RX rx, RX substitute) {
+    public final void substitute(RX rx, RX substitute) {
         assert down.equals(rx);
         down = substitute;
     }
