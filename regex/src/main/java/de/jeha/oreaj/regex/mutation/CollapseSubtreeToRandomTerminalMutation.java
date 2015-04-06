@@ -5,6 +5,8 @@ import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
 import de.jeha.oreaj.regex.subtree.Subtree;
 
+import java.util.List;
+
 /**
  * @author jenshadlich@googlemail.com
  */
@@ -20,10 +22,16 @@ public class CollapseSubtreeToRandomTerminalMutation implements Mutation<RX> {
 
     @Override
     public RX mutate(RX genotype) {
-        RX mutant = genotype.deepClone();
+        final RX mutant = genotype.deepClone();
+        final RX subtree = Subtree.randomSubtree(mutant);
+        final Letter newLetter = new Letter(sigma[GENERATOR.nextInt(sigma.length)]);
+        final List<RX> siblings = subtree.siblings();
 
-        RX subtree = Subtree.randomSubtree(mutant);
-        subtree.substitute(subtree, new Letter(sigma[GENERATOR.nextInt(sigma.length)]));
+        // if it's not a terminal, replace a random sibling
+        if (siblings.size() > 0) {
+            RX selectedChild = siblings.get(GENERATOR.nextInt(siblings.size()));
+            subtree.substitute(selectedChild, newLetter);
+        }
 
         return mutant;
     }
