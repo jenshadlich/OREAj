@@ -1,8 +1,8 @@
 package de.jeha.oreaj.main;
 
+import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.core.Configuration;
 import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
-import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.core.Population;
 import de.jeha.oreaj.genetic.selection.environmental.Best100Selection;
 import de.jeha.oreaj.genetic.selection.parental.LinearRecombination;
@@ -12,6 +12,7 @@ import de.jeha.oreaj.regex.crossover.RandomTreeCrossover;
 import de.jeha.oreaj.regex.evaluator.RXEvaluator;
 import de.jeha.oreaj.regex.generator.RXGenerator;
 import de.jeha.oreaj.regex.mutation.PointMutation;
+import de.jeha.oreaj.regex.mutation.RandomMutation;
 import de.jeha.oreaj.regex.rx.RX;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
@@ -74,7 +75,12 @@ public class Orea {
                 configuration,
                 new RXGenerator(3, sigma),
                 new RXEvaluator(target),
-                new LinearVariation<>(new RandomTreeCrossover(), new PointMutation(sigma)),
+                new LinearVariation<>(
+                        new RandomTreeCrossover(),
+                        new RandomMutation(
+                                new PointMutation(sigma)
+                        )
+                ),
                 new Best100Selection<>(configuration));
 
         Population<RX> result = solver.evolve();
@@ -110,6 +116,6 @@ public class Orea {
         boolean isEquivalent = AutomatonHelper.isEquivalent(target, new RegExp(winner.show()).toAutomaton());
 
         LOG.info("Winner = '{}'", winner.show());
-        LOG.info("Is equivalent? {}",  isEquivalent ? "YES" : "NO");
+        LOG.info("Is equivalent? {}", isEquivalent ? "YES" : "NO");
     }
 }
