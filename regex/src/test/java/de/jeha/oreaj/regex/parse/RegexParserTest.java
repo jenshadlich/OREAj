@@ -14,6 +14,12 @@ public class RegexParserTest {
     }
 
     @Test
+    public void testLetterUnionLetter() throws NoParseException {
+        RX expected = new Union(new Letter("a"), new Letter("b"));
+        assertEquals(expected.show(), new RegexParser("a|b").parse().show());
+    }
+
+    @Test
     public void testParseWithShuffle() throws NoParseException {
         RX expected = new Shuffle(new Star(new Dot(new Letter("a"), new Letter("a"))), new Star(new Letter("b")));
         assertEquals(expected.show(), new RegexParser("(aa)*$b*").parse().show());
@@ -50,5 +56,4 @@ public class RegexParserTest {
         }
         assertEquals("Too many characters left (pos 2)", exceptionMessage);
     }
-
 }

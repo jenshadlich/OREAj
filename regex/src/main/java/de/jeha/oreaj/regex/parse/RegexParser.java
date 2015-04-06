@@ -51,7 +51,7 @@ public class RegexParser extends Parser {
 
     private RX expr() throws NoParseException {
         RX rx = term();
-        if (tryMatch("+")) {
+        if (tryMatch("|")) {
             return new Union(rx, expr());
         }
         if (tryMatch(".")) {
