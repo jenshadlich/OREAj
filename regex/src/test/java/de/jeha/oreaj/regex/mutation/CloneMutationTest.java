@@ -1,8 +1,7 @@
 package de.jeha.oreaj.regex.mutation;
 
-import de.jeha.oreaj.regex.rx.Letter;
+import de.jeha.oreaj.regex.generator.RXGenerator;
 import de.jeha.oreaj.regex.rx.RX;
-import de.jeha.oreaj.regex.rx.Star;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -12,9 +11,8 @@ public class CloneMutationTest {
 
     @Test
     public void test() {
-        String[] sigma = {"a", "b"};
-        //RX rx = new RXGenerator(3, sigma).generate(); // TODO: check, produces errors
-        RX rx = new Star(new Letter("a"));
+        String[] sigma = {"a", "b", "c"};
+        RX rx = new RXGenerator(3, sigma).generate();
         RX mutant = new CloneMutation().mutate(rx);
 
         assertEquals(rx.show(), mutant.show());
