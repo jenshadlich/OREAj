@@ -15,4 +15,9 @@ public abstract class AbstractRX implements RX {
     public void substitute(RX rx, RX substitute) {
         // do nothing by default
     }
+
+    @Override
+    public String toString() {
+        return show();
+    }
 }
