@@ -4,6 +4,7 @@
     <groupId>de.jeha.oreaj</groupId>
     <artifactId>oreaj</artifactId>
     <name>OREAj</name>
+    <description>Optimization of Regular Expressions using Evolutionary Algorithms</description>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
@@ -13,14 +14,26 @@
         <module>genetic</module>
     </modules>
 
+    <developers>
+        <developer>
+            <name>Jens Hadlich</name>
+            <email>jenshadlich@googlemail.com</email>
+        </developer>
+    </developers>
+
     <properties>
+        <project.target.jdk>1.8</project.target.jdk>
+        <project.source.jdk>1.8</project.source.jdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- dependency versions -->
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- project dependency versions -->
         <automaton.version>1.11-8</automaton.version>
         <slf4j.version>1.7.10</slf4j.version>
         <junit.version>4.12</junit.version>
         <logback.version>1.1.2</logback.version>
         <commons-lang3.version>3.3</commons-lang3.version>
+        <!-- plugin versions -->
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     </properties>
 
     <repositories>
@@ -65,10 +78,10 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${project.source.jdk}</source>
+                    <target>${project.target.jdk}</target>
                 </configuration>
             </plugin>
         </plugins>
