@@ -14,9 +14,8 @@ public class RXEvaluator extends AbstractRXEvaluator {
 
     @Override
     public double evaluate(RX individual) {
-        RegExp rx = new RegExp(individual.show());
-        Automaton semantics = rx.toAutomaton();
-
+        RegExp regExp = new RegExp(individual.show());
+        Automaton semantics = regExp.toAutomaton();
         Automaton tooMuch = semantics.minus(target);
         Automaton missing = target.minus(semantics);
 
