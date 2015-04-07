@@ -36,8 +36,8 @@ public class Orea {
      */
     public static void main(String... args) {
         //simpleTask1();
-        //simpleTask2();
-        shuffleTask1();
+        simpleTask2();
+        //shuffleTask1();
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -65,7 +65,7 @@ public class Orea {
     }
 
     private static void simpleTask2() {
-        final String[] sigma = {"a", "b", "c", "d"};
+        final String[] sigma = {"a", "b"};
         final Automaton target = new RegExp("(ab|bb)*").toAutomaton();
 
         Configuration configuration = new ConfigurationBuilder()
@@ -82,7 +82,6 @@ public class Orea {
                         new RandomTreeCrossover(),
                         new RandomMutation(
                                 new PointMutation(sigma),
-                                new CloneMutation(),
                                 new CollapseSubtreeToRandomTerminalMutation(sigma)
                         )
                 ),
