@@ -64,7 +64,8 @@ public class GeneticSolver<GT> {
             LOG.debug("environmental selection, size = {} -> {}", population.size(), newPopulation.size());
             population = newPopulation;
 
-            LOG.debug("best = {}", population.best().getFitness());
+            Individual<GT> currentBest = population.best();
+            LOG.debug("current best = {} ({})", currentBest.getFitness(), currentBest.getGenotype());
         }
 
         LOG.info("done with evolution");
