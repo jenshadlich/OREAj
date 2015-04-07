@@ -9,7 +9,7 @@ import de.jeha.oreaj.regex.rx.RX;
 public class CloneMutation implements Mutation<RX> {
 
     @Override
-    public RX mutate(RX genotype) {
-        return genotype.deepClone();
+    public RX mutate(RX rx) {
+        return rx.deepClone();
     }
 }

@@ -34,9 +34,9 @@ public class RandomMutation implements Mutation<RX> {
     }
 
     @Override
-    public RX mutate(RX genotype) {
+    public RX mutate(RX rx) {
         final Mutation<RX> mutation = mutations.get(GENERATOR.nextInt(mutations.size()));
         LOG.trace("Chosen mutation: {}", mutation.getClass().getSimpleName());
-        return mutation.mutate(genotype);
+        return mutation.mutate(rx);
     }
 }

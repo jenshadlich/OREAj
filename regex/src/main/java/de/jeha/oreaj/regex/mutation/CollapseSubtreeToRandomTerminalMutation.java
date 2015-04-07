@@ -21,8 +21,8 @@ public class CollapseSubtreeToRandomTerminalMutation implements Mutation<RX> {
     }
 
     @Override
-    public RX mutate(RX genotype) {
-        final RX mutant = genotype.deepClone();
+    public RX mutate(RX rx) {
+        final RX mutant = rx.deepClone();
         final RX subtree = Subtree.randomSubtree(mutant);
         final Letter newLetter = new Letter(sigma[GENERATOR.nextInt(sigma.length)]);
         final List<RX> siblings = subtree.siblings();
