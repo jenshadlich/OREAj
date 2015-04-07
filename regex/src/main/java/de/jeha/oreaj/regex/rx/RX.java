@@ -27,8 +27,8 @@ public interface RX extends Iterable<RX> {
     /**
      * TODO: Not so nice, find alternative solution.
      *
-     * @param rx
-     * @param substitute
+     * @param rx instance of the sibling to replace (needed e.g. for Op2 which has 2 siblings)
+     * @param substitute new sibling
      */
     void substitute(RX rx, RX substitute);
 }
