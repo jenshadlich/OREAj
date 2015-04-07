@@ -25,9 +25,14 @@ public interface RX extends Iterable<RX> {
     RX deepClone();
 
     /**
+     * @return the depth of the RX tree
+     */
+    int depth();
+
+    /**
      * TODO: Not so nice, find alternative solution.
      *
-     * @param rx instance of the sibling to replace (needed e.g. for Op2 which has 2 siblings)
+     * @param rx         instance of the sibling to replace (needed e.g. for Op2 which has 2 siblings)
      * @param substitute new sibling
      */
     void substitute(RX rx, RX substitute);

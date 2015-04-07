@@ -42,4 +42,10 @@ public abstract class Op2 extends AbstractRX {
             right = substitute;
         }
     }
+
+    @Override
+    public int depth() {
+        return Math.max(getLeft().depth(), getRight().depth()) + 1;
+    }
+
 }

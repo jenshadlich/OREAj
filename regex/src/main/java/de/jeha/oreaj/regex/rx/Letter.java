@@ -26,4 +26,8 @@ public class Letter extends AbstractRX {
         return new Letter(value);
     }
 
+    @Override
+    public int depth() {
+        return 0;
+    }
 }

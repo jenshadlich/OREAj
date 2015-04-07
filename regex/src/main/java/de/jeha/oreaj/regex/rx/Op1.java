@@ -26,4 +26,8 @@ public abstract class Op1 extends AbstractRX {
         down = substitute;
     }
 
+    @Override
+    public int depth() {
+        return getDown().depth() + 1;
+    }
 }
