@@ -18,6 +18,7 @@ import de.jeha.oreaj.regex.mutation.RandomMutation;
 import de.jeha.oreaj.regex.rx.RX;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
+import dk.brics.automaton.ShuffleOperations;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,8 +36,8 @@ public class Orea {
      */
     public static void main(String... args) {
         //simpleTask1();
-        simpleTask2();
-        //shuffleTask1();
+        //simpleTask2();
+        shuffleTask1();
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -95,11 +96,16 @@ public class Orea {
     private static void shuffleTask1() {
         final String[] sigma = {"a", "b", "c"};
         //final Automaton target = new RegExp("(aa)*$b*").toAutomaton();
-        final Automaton target = new RegExp("(ab)$(bc)").toAutomaton(); // bcab + bacb + babc + abbc + abcb
+
+        // ab $ bc = bcab + bacb + babc + abbc + abcb
+        final Automaton target = ShuffleOperations.shuffle(
+                new RegExp("ab").toAutomaton(),
+                new RegExp("bc").toAutomaton()
+        );
 
         Configuration configuration = new ConfigurationBuilder()
                 .setPopulationMaxSize(1000)
-                .setMaxRuns(50)
+                .setMaxRuns(1000)
                 .setThreshold(0.8)
                 .build();
 
@@ -107,7 +113,13 @@ public class Orea {
                 configuration,
                 new RXGenerator(3, sigma),
                 new RXEvaluator(target),
-                new LinearRecombination<>(new RandomTreeCrossover()),
+                new LinearVariation<>(
+                        new RandomTreeCrossover(),
+                        new RandomMutation(
+                                new PointMutation(sigma),
+                                new CollapseSubtreeToRandomTerminalMutation(sigma)
+                        )
+                ),
                 new Best100Selection<>(configuration));
 
         Population<RX> result = solver.evolve();
