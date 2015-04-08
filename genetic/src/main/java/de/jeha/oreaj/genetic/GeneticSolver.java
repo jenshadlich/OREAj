@@ -92,7 +92,12 @@ public class GeneticSolver<GT> {
     // -----------------------------------------------------------------------------------------------------------------
 
     private boolean checkIfTerminate(int i) {
-        return i <= configuration.getMaxRuns() && population.best().getFitness() > configuration.getThreshold();
+        return i <= configuration.getMaxRuns()
+                && greaterThan(population.best().getFitness(), configuration.getThreshold(), 0.1e-5);
+    }
+
+    private boolean greaterThan(double a, double b, double epsilon) {
+        return a - b > epsilon;
     }
 
     private List<Individual<GT>> evaluate(List<GT> individuals) {
