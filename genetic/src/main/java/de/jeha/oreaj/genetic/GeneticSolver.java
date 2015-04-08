@@ -75,6 +75,12 @@ public class GeneticSolver<GT> {
 
             Individual<GT> currentBest = population.best();
             LOG.debug("current best = {} ({})", currentBest.getFitness(), currentBest.getGenotype());
+            if (LOG.isTraceEnabled()) {
+                LOG.trace("population:");
+                for (Individual<GT> individual : population) {
+                    LOG.trace("{} -> {}", individual.getGenotype(), individual.getFitness());
+                }
+            }
         }
 
         LOG.info("done with evolution");
