@@ -28,6 +28,15 @@ public class GeneticSolver<GT> {
 
     private Population<GT> population = null;
 
+    /**
+     * TODO: provide a builder, constructor is getting too big
+     *
+     * @param configuration          configuration
+     * @param generator              generator for individuals
+     * @param evaluator              evaluator
+     * @param parentalSelection      parental selection strategy
+     * @param environmentalSelection environment selection strategy
+     */
     public GeneticSolver(Configuration configuration, Generator<GT> generator,
                          Evaluator<GT> evaluator,
                          ParentalSelection<GT> parentalSelection,
