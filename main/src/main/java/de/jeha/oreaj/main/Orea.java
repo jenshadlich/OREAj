@@ -103,7 +103,6 @@ public class Orea {
 
     private static void shuffleTask1() {
         final String[] sigma = {"a", "b", "c"};
-        //final Automaton target = new RegExp("(aa)*$b*").toAutomaton();
 
         // ab $ bc = bcab + bacb + babc + abbc + abcb
         final Automaton target = ShuffleOperations.shuffle(
