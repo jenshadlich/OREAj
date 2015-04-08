@@ -4,14 +4,12 @@ import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.core.Configuration;
 import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.core.Population;
-import de.jeha.oreaj.genetic.selection.environmental.Best100Selection;
-import de.jeha.oreaj.genetic.selection.parental.LinearRecombination;
+import de.jeha.oreaj.genetic.selection.environmental.Best100UniqueSelection;
 import de.jeha.oreaj.genetic.selection.parental.LinearVariation;
 import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import de.jeha.oreaj.regex.crossover.RandomTreeCrossover;
 import de.jeha.oreaj.regex.evaluator.RXEvaluator;
 import de.jeha.oreaj.regex.generator.RXGenerator;
-import de.jeha.oreaj.regex.mutation.CloneMutation;
 import de.jeha.oreaj.regex.mutation.CollapseSubtreeToRandomTerminalMutation;
 import de.jeha.oreaj.regex.mutation.PointMutation;
 import de.jeha.oreaj.regex.mutation.RandomMutation;
@@ -35,8 +33,8 @@ public class Orea {
      * @param args cmd line arguments (not used)
      */
     public static void main(String... args) {
-        //simpleTask1();
-        simpleTask2();
+        simpleTask1();
+        //simpleTask2();
         //shuffleTask1();
     }
 
@@ -48,7 +46,7 @@ public class Orea {
 
         Configuration configuration = new ConfigurationBuilder()
                 .setPopulationMaxSize(1000)
-                .setMaxRuns(100)
+                .setMaxRuns(1000)
                 .setThreshold(0.8)
                 .build();
 
@@ -56,8 +54,15 @@ public class Orea {
                 configuration,
                 new RXGenerator(3, sigma),
                 new RXEvaluator(target),
-                new LinearRecombination<>(new RandomTreeCrossover()),
-                new Best100Selection<>(configuration));
+                new LinearVariation<>(
+                        new RandomTreeCrossover(),
+                        new RandomMutation(
+                                new PointMutation(sigma),
+                                new CollapseSubtreeToRandomTerminalMutation(sigma)
+                        )
+                ),
+                new Best100UniqueSelection<>(configuration)
+        );
 
         Population<RX> result = solver.evolve();
 
@@ -85,7 +90,8 @@ public class Orea {
                                 new CollapseSubtreeToRandomTerminalMutation(sigma)
                         )
                 ),
-                new Best100Selection<>(configuration));
+                new Best100UniqueSelection<>(configuration)
+        );
 
         Population<RX> result = solver.evolve();
 
@@ -119,7 +125,8 @@ public class Orea {
                                 new CollapseSubtreeToRandomTerminalMutation(sigma)
                         )
                 ),
-                new Best100Selection<>(configuration));
+                new Best100UniqueSelection<>(configuration)
+        );
 
         Population<RX> result = solver.evolve();
 
