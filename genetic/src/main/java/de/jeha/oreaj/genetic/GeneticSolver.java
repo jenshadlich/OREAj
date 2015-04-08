@@ -73,8 +73,10 @@ public class GeneticSolver<GT> {
             LOG.debug("environmental selection, size = {} -> {}", population.size(), newPopulation.size());
             population = newPopulation;
 
-            Individual<GT> currentBest = population.best();
-            LOG.debug("current best = {} ({})", currentBest.getFitness(), currentBest.getGenotype());
+            if (LOG.isDebugEnabled()) {
+                Individual<GT> currentBest = population.best();
+                LOG.debug("current best = {} -> {}", currentBest.getGenotype(), currentBest.getFitness());
+            }
             if (LOG.isTraceEnabled()) {
                 LOG.trace("population:");
                 for (Individual<GT> individual : population) {
