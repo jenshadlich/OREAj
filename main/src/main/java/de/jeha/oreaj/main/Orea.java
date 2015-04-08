@@ -4,6 +4,7 @@ import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.core.Configuration;
 import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.core.Population;
+import de.jeha.oreaj.genetic.selection.environmental.Best100Selection;
 import de.jeha.oreaj.genetic.selection.environmental.Best100UniqueSelection;
 import de.jeha.oreaj.genetic.selection.parental.LinearVariation;
 import de.jeha.oreaj.regex.automaton.AutomatonHelper;
@@ -29,7 +30,9 @@ public class Orea {
     private static final Logger LOG = LoggerFactory.getLogger(Orea.class);
 
     /**
-     * @param args cmd line arguments (not used)
+     * TODO: cmd line arguments to control tasks and configuration.
+     *
+     * @param args cmd line arguments (not used yet)
      */
     public static void main(String... args) {
         simpleTask1();
@@ -45,7 +48,7 @@ public class Orea {
 
         Configuration configuration = new ConfigurationBuilder()
                 .setPopulationMaxSize(100)
-                .setMaxRuns(100000)
+                .setMaxRuns(1000)
                 .setThreshold(0.8)
                 .build();
 
@@ -62,7 +65,7 @@ public class Orea {
                                 new ExpandMutation(sigma)
                         )
                 ),
-                new Best100UniqueSelection<>(configuration)
+                new Best100Selection<>(configuration)
         );
 
         Population<RX> result = solver.evolve();
