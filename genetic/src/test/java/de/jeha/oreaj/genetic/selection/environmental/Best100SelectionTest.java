@@ -22,7 +22,7 @@ public class Best100SelectionTest {
                 new ConfigurationBuilder().setPopulationMaxSize(3).build()
         );
         List<Individual<Integer>> individuals = new ArrayList<>();
-        for (int i = 1; i <= 5; i++) {
+        for (int i = 5; i > 0; i--) {
             individuals.add(new Individual<>(i, i));
         }
 
@@ -30,5 +30,7 @@ public class Best100SelectionTest {
         Population<Integer> populationAfterSelection = selection.select(population);
 
         assertEquals(3, populationAfterSelection.size());
+        assertEquals(1, populationAfterSelection.best().getGenotype().intValue());
+        assertEquals(1, populationAfterSelection.best().getFitness(), 0.e-3);
     }
 }
