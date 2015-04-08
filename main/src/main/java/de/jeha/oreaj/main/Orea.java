@@ -4,7 +4,6 @@ import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.core.Configuration;
 import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.core.Population;
-import de.jeha.oreaj.genetic.selection.environmental.Best100Selection;
 import de.jeha.oreaj.genetic.selection.environmental.Best100UniqueSelection;
 import de.jeha.oreaj.genetic.selection.parental.LinearVariation;
 import de.jeha.oreaj.regex.automaton.AutomatonHelper;
@@ -35,9 +34,9 @@ public class Orea {
      * @param args cmd line arguments (not used yet)
      */
     public static void main(String... args) {
-        simpleTask1();
+        //simpleTask1();
         //simpleTask2();
-        //shuffleTask1();
+        shuffleTask1();
     }
 
     // -----------------------------------------------------------------------------------------------------------------
@@ -47,7 +46,7 @@ public class Orea {
         final Automaton target = new RegExp("(aa|ba)*").toAutomaton();
 
         Configuration configuration = new ConfigurationBuilder()
-                .setPopulationMaxSize(100)
+                .setPopulationMaxSize(1000)
                 .setMaxRuns(1000)
                 .setThreshold(0.8)
                 .build();
@@ -60,12 +59,12 @@ public class Orea {
                         new RandomTreeCrossover(),
                         new RandomMutation(
                                 new PointMutation(sigma),
-                                new CollapseSubtreeToRandomTerminalMutation(sigma),
                                 new StarMutation(),
+                                new CollapseSubtreeToRandomTerminalMutation(sigma),
                                 new ExpandMutation(sigma)
                         )
                 ),
-                new Best100Selection<>(configuration)
+                new Best100UniqueSelection<>(configuration)
         );
 
         Population<RX> result = solver.evolve();
@@ -115,18 +114,19 @@ public class Orea {
         Configuration configuration = new ConfigurationBuilder()
                 .setPopulationMaxSize(1000)
                 .setMaxRuns(1000)
-                .setThreshold(0.8)
+                .setThreshold(2.4)
                 .build();
 
         GeneticSolver<RX> solver = new GeneticSolver<>(
                 configuration,
                 new RXGenerator(3, sigma),
-                new RXEvaluator(target),
+                new RXEvaluatorWithLength(target),
                 new LinearVariation<>(
                         new RandomTreeCrossover(),
                         new RandomMutation(
                                 new PointMutation(sigma),
-                                new CollapseSubtreeToRandomTerminalMutation(sigma)
+                                new CollapseSubtreeToRandomTerminalMutation(sigma),
+                                new ExpandMutation(sigma)
                         )
                 ),
                 new Best100UniqueSelection<>(configuration)
