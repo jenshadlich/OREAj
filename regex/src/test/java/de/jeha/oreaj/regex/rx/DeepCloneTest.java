@@ -17,5 +17,7 @@ public class DeepCloneTest {
 
         assertEquals(rx.show(), mutant.show());
         assertNotEquals(rx, mutant);
+        assertNotEquals(Dot.class.cast(rx).getLeft(), Dot.class.cast(mutant).getLeft());
+        assertNotEquals(Dot.class.cast(rx).getRight(), Dot.class.cast(mutant).getRight());
     }
 }
