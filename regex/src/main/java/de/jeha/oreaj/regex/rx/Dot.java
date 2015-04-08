@@ -15,7 +15,7 @@ public class Dot extends Op2 {
 
     @Override
     public RX deepClone() {
-        return new Dot(getLeft(), getRight());
+        return new Dot(getLeft().deepClone(), getRight().deepClone());
     }
 
 }

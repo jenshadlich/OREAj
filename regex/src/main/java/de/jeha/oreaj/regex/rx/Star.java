@@ -13,6 +13,6 @@ public class Star extends Op1 {
 
     @Override
     public RX deepClone() {
-        return new Star(getDown());
+        return new Star(getDown().deepClone());
     }
 }
