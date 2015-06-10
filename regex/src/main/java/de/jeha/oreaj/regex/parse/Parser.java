@@ -1,15 +1,18 @@
 package de.jeha.oreaj.regex.parse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author jenshadlich@googlemail.com
+ */
 class Parser {
 
     private final Logger LOG = LoggerFactory.getLogger(Parser.class);
 
-    protected static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
-    protected final String input;
-    protected String remainder;
+    private final String input;
+    private String remainder;
 
     protected Parser(final String input) {
         this.input = input;
@@ -49,11 +52,16 @@ class Parser {
         }
     }
 
-    protected boolean isIn(String character, String set) {
-        return character.length() > 0 && set.contains(character);
+    protected boolean isLetter(String character) {
+        return StringUtils.isAlpha(character);
     }
 
-    protected boolean isLetter(String character) {
-        return isIn(character, ALPHA);
+    protected boolean hasRemainingCharacters() {
+        return remainder.length() > 0;
     }
+
+    protected int getPosition() {
+        return input.length() - remainder.length();
+    }
+
 }

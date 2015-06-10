@@ -3,7 +3,7 @@ package de.jeha.oreaj.regex.parse;
 import de.jeha.oreaj.regex.rx.*;
 
 /**
- *
+ * @author jenshadlich@googlemail.com
  */
 public class RegexParser extends Parser {
 
@@ -65,11 +65,10 @@ public class RegexParser extends Parser {
 
     public RX parse() throws NoParseException {
         RX rx = expr();
-        if (remainder.length() > 0) {
-            int errorPosition = (input.length() - remainder.length()) + 1;
+        if (hasRemainingCharacters()) {
+            int errorPosition = getPosition() + 1;
             throw new NoParseException("Too many characters left (pos " + errorPosition + ")");
         }
-
         return rx;
     }
 
