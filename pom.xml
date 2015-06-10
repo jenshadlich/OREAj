@@ -4,7 +4,7 @@
     <groupId>de.jeha.oreaj</groupId>
     <artifactId>oreaj</artifactId>
     <name>OREAj</name>
-    <description>Optimization of Regular Expressions using Evolutionary Algorithms</description>
+    <description>Optimization of Regular Expressions using Evolutionary Algorithms (in Java)</description>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
