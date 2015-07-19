@@ -19,6 +19,7 @@ public class RandomMutation implements Mutation<RX> {
 
     private final List<Mutation<RX>> mutations = new ArrayList<>();
 
+    @SafeVarargs
     public RandomMutation(Mutation<RX> firstMutation, Mutation<RX>... additionalMutations) {
         if (firstMutation == null) {
             throw new IllegalArgumentException("parameter 'firstMutation' must not be null");
