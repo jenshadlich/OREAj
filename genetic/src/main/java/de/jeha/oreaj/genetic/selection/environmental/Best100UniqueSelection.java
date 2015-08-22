@@ -36,7 +36,7 @@ public class Best100UniqueSelection<GT> implements EnvironmentalSelection<GT> {
 
     private Predicate<Individual<GT>> distinctByGenotype() {
         Map<Object, Boolean> seen = new ConcurrentHashMap<>();
-        return i -> seen.putIfAbsent(i.getGenotype(), Boolean.TRUE) == null;
+        return i -> (seen.putIfAbsent(i.getGenotype(), Boolean.TRUE) == null);
     }
 
 }
