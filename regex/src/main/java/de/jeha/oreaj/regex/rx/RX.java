@@ -36,4 +36,5 @@ public interface RX extends Iterable<RX> {
      * @param substitute new sibling
      */
     void substitute(RX rx, RX substitute);
+
 }

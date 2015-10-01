@@ -15,4 +15,5 @@ public class Star extends Op1 {
     public RX deepClone() {
         return new Star(getDown().deepClone());
     }
+
 }

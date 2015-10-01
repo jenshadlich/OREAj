@@ -1,6 +1,6 @@
 package de.jeha.oreaj.regex.rx;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public abstract class Op1 extends AbstractRX {
@@ -17,7 +17,7 @@ public abstract class Op1 extends AbstractRX {
 
     @Override
     final public List<RX> siblings() {
-        return Arrays.asList(getDown());
+        return Collections.singletonList(getDown());
     }
 
     @Override
@@ -30,4 +30,5 @@ public abstract class Op1 extends AbstractRX {
     public int depth() {
         return getDown().depth() + 1;
     }
+
 }

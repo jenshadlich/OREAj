@@ -17,4 +17,5 @@ public class Union extends Op2 {
     public RX deepClone() {
         return new Union(getLeft().deepClone(), getRight().deepClone());
     }
+
 }

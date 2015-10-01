@@ -17,4 +17,5 @@ public class Shuffle extends Op2 {
     public RX deepClone() {
         return new Shuffle(getLeft().deepClone(), getRight().deepClone());
     }
+
 }
