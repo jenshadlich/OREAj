@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 public class GeneticSolver<GT> {
 
     private static final Logger LOG = LoggerFactory.getLogger(GeneticSolver.class);
+    private static final double DEFAULT_EPSILON = 0.1e-5;
 
     private final Configuration configuration;
     private final Generator<GT> generator;
@@ -93,7 +94,7 @@ public class GeneticSolver<GT> {
 
     private boolean checkIfTerminate(int i) {
         return i <= configuration.getMaxRuns()
-                && greaterThan(population.best().getFitness(), configuration.getThreshold(), 0.1e-5);
+                && greaterThan(population.best().getFitness(), configuration.getThreshold(), DEFAULT_EPSILON);
     }
 
     private boolean greaterThan(double a, double b, double epsilon) {
