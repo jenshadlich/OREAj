@@ -6,6 +6,7 @@ import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.core.Population;
 import de.jeha.oreaj.genetic.selection.environmental.Best100UniqueSelection;
 import de.jeha.oreaj.genetic.selection.parental.LinearVariation;
+import de.jeha.oreaj.regex.Sigma;
 import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import de.jeha.oreaj.regex.crossover.RandomTreeCrossover;
 import de.jeha.oreaj.regex.evaluator.RXEvaluator;
@@ -42,7 +43,7 @@ public class Orea {
     // -----------------------------------------------------------------------------------------------------------------
 
     private static void simpleTask1() {
-        final String[] sigma = {"a", "b"};
+        final Sigma sigma = new Sigma("a", "b");
         final Automaton target = new RegExp("(aa|ba)*").toAutomaton();
 
         Configuration configuration = new ConfigurationBuilder()
@@ -73,7 +74,7 @@ public class Orea {
     }
 
     private static void simpleTask2() {
-        final String[] sigma = {"a", "b"};
+        final Sigma sigma = new Sigma("a", "b");
         final Automaton target = new RegExp("(ab|bb)*").toAutomaton();
 
         Configuration configuration = new ConfigurationBuilder()
@@ -102,7 +103,7 @@ public class Orea {
     }
 
     private static void shuffleTask1() {
-        final String[] sigma = {"a", "b", "c"};
+        final Sigma sigma = new Sigma("a", "b", "c");
 
         // ab $ bc = bcab + bacb + babc + abbc + abcb
         final Automaton target = ShuffleOperations.shuffle(

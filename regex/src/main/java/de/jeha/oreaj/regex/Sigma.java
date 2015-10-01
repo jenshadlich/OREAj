@@ -1,5 +1,7 @@
 package de.jeha.oreaj.regex;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -20,6 +22,14 @@ public class Sigma {
 
     public String random() {
         return sigma[GENERATOR.nextInt(sigma.length)];
+    }
+
+    public List<String> asList() {
+        return Arrays.asList(sigma);
+    }
+
+    public int size() {
+        return sigma.length;
     }
 
 }

@@ -1,10 +1,10 @@
 package de.jeha.oreaj.regex.mutation;
 
 import de.jeha.oreaj.genetic.core.Mutation;
+import de.jeha.oreaj.regex.Sigma;
 import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
 
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -16,9 +16,9 @@ public class PointMutation implements Mutation<RX> {
 
     private static final java.util.Random GENERATOR = new java.util.Random();
 
-    private final String[] sigma;
+    private final Sigma sigma;
 
-    public PointMutation(String[] sigma) {
+    public PointMutation(Sigma sigma) {
         this.sigma = sigma;
     }
 
@@ -36,8 +36,8 @@ public class PointMutation implements Mutation<RX> {
             } else {
                 // the 'child' must be a Letter
                 // enforce to not replace a Letter with a equal Letter
-                Set<String> sigmaSetForSubstitution = new HashSet<>(Arrays.asList(sigma));
-                if (sigma.length > 1) {
+                Set<String> sigmaSetForSubstitution = new HashSet<>(sigma.asList());
+                if (sigma.size() > 1) {
                     final String terminalToExclude = child.show();
                     sigmaSetForSubstitution.remove(terminalToExclude);
                 }
@@ -54,4 +54,5 @@ public class PointMutation implements Mutation<RX> {
 
         return mutant;
     }
+
 }

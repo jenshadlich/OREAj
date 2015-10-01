@@ -1,5 +1,6 @@
 package de.jeha.oreaj.regex.mutation;
 
+import de.jeha.oreaj.regex.Sigma;
 import de.jeha.oreaj.regex.generator.RXGenerator;
 import de.jeha.oreaj.regex.rx.RX;
 import org.junit.Test;
@@ -11,7 +12,7 @@ public class CloneMutationTest {
 
     @Test
     public void test() {
-        String[] sigma = {"a", "b", "c"};
+        Sigma sigma = new Sigma("a", "b", "c");
         RX rx = new RXGenerator(3, sigma).generate();
         RX mutant = new CloneMutation().mutate(rx);
 

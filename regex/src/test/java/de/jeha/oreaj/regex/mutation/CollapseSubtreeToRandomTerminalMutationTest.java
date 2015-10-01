@@ -1,5 +1,6 @@
 package de.jeha.oreaj.regex.mutation;
 
+import de.jeha.oreaj.regex.Sigma;
 import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
 import de.jeha.oreaj.regex.rx.Star;
@@ -17,7 +18,7 @@ public class CollapseSubtreeToRandomTerminalMutationTest {
 
     @Test
     public void test() {
-        String[] sigma = {"a", "b"};
+        Sigma sigma = new Sigma("a", "b");
         RX rx = new Star(new Union(new Letter("a"), new Letter("b"))); // (a|b)*
         RX mutant = new CollapseSubtreeToRandomTerminalMutation(sigma).mutate(rx);
 

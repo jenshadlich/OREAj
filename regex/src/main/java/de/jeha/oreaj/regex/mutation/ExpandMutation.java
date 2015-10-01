@@ -1,6 +1,7 @@
 package de.jeha.oreaj.regex.mutation;
 
 import de.jeha.oreaj.genetic.core.Mutation;
+import de.jeha.oreaj.regex.Sigma;
 import de.jeha.oreaj.regex.generator.RXGenerator;
 import de.jeha.oreaj.regex.rx.RX;
 import de.jeha.oreaj.regex.subtree.Subtree;
@@ -16,7 +17,7 @@ public class ExpandMutation implements Mutation<RX> {
 
     private final RXGenerator rxGenerator;
 
-    public ExpandMutation(String[] sigma) {
+    public ExpandMutation(Sigma sigma) {
         rxGenerator = new RXGenerator(3, sigma);
     }
 
@@ -34,4 +35,5 @@ public class ExpandMutation implements Mutation<RX> {
 
         return mutant;
     }
+
 }

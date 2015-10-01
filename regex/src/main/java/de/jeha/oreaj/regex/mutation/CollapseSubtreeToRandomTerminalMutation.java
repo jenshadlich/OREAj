@@ -1,6 +1,7 @@
 package de.jeha.oreaj.regex.mutation;
 
 import de.jeha.oreaj.genetic.core.Mutation;
+import de.jeha.oreaj.regex.Sigma;
 import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
 import de.jeha.oreaj.regex.subtree.Subtree;
@@ -14,9 +15,9 @@ public class CollapseSubtreeToRandomTerminalMutation implements Mutation<RX> {
 
     private static final java.util.Random GENERATOR = new java.util.Random();
 
-    private final String[] sigma;
+    private final Sigma sigma;
 
-    public CollapseSubtreeToRandomTerminalMutation(String[] sigma) {
+    public CollapseSubtreeToRandomTerminalMutation(Sigma sigma) {
         this.sigma = sigma;
     }
 
@@ -24,7 +25,7 @@ public class CollapseSubtreeToRandomTerminalMutation implements Mutation<RX> {
     public RX mutate(RX rx) {
         final RX mutant = rx.deepClone();
         final RX subtree = Subtree.randomSubtree(mutant);
-        final Letter newLetter = new Letter(sigma[GENERATOR.nextInt(sigma.length)]);
+        final Letter newLetter = new Letter(sigma.random());
         final List<RX> siblings = subtree.siblings();
 
         // if it's not a terminal, replace a random sibling
@@ -35,4 +36,5 @@ public class CollapseSubtreeToRandomTerminalMutation implements Mutation<RX> {
 
         return mutant;
     }
+
 }
