@@ -1,6 +1,5 @@
 package de.jeha.oreaj.regex.automaton;
 
-import de.jeha.oreaj.regex.rx.RX;
 import dk.brics.automaton.Automaton;
 
 import java.util.ArrayList;
@@ -57,4 +56,5 @@ public class AutomatonHelper {
 
         return tooMuch.isEmpty() && missing.isEmpty();
     }
+
 }

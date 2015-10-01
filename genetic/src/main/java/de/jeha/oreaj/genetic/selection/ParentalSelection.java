@@ -12,4 +12,5 @@ import java.util.List;
 public interface ParentalSelection<GT> {
 
     List<GT> select(Population<GT> population);
+    
 }

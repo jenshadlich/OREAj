@@ -17,8 +17,8 @@ public class RandomTreeCrossover implements Crossover<RX> {
 
     @Override
     public RX crossover(RX mom, RX dad) {
-        RX subtreeOfMom = Subtree.randomSubtree(mom);
-        RX subtreeOfDad = Subtree.randomSubtree(dad);
+        final RX subtreeOfMom = Subtree.randomSubtree(mom);
+        final RX subtreeOfDad = Subtree.randomSubtree(dad);
 
         return combineWithRandomGlue(subtreeOfMom, subtreeOfDad);
     }
