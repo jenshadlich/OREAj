@@ -24,30 +24,26 @@ public class RXGenerator implements Generator<RX> {
 
     @Override
     public RX generate() {
-        return full(this.depth);
+        return generateRandomRXTree(this.depth);
     }
 
     // -----------------------------------------------------------------------------------------------------------------
 
-    private RX full(int depth) {
+    private RX generateRandomRXTree(int depth) {
         if (depth > 0) {
             // random Operation
             switch (GENERATOR.nextInt(3)) {
                 case 0:
-                    return new Dot(full(depth - 1), full(depth - 1));
+                    return new Dot(generateRandomRXTree(depth - 1), generateRandomRXTree(depth - 1));
                 case 1:
-                    return new Union(full(depth - 1), full(depth - 1));
+                    return new Union(generateRandomRXTree(depth - 1), generateRandomRXTree(depth - 1));
                 case 2:
                 default:
-                    return new Star(full(depth - 1));
+                    return new Star(generateRandomRXTree(depth - 1));
             }
         } else {
-            return randomLetter();
+            return new Letter(sigma.random());
         }
-    }
-
-    private Letter randomLetter() {
-        return new Letter(sigma.random());
     }
 
 }
