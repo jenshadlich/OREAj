@@ -1,6 +1,5 @@
-package de.jeha.oreaj.regex.evaluator;
+package de.jeha.oreaj.regex.automaton;
 
-import de.jeha.oreaj.regex.automaton.AutomatonHelper;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
 import org.junit.Test;
@@ -36,4 +35,5 @@ public class AutomatonHelperTest {
             assertTrue(expected.contains(s));
         }
     }
+
 }
