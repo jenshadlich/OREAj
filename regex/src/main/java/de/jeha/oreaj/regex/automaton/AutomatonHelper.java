@@ -18,34 +18,23 @@ public class AutomatonHelper {
      * @return list of accepted words
      */
     public static List<String> accepted(Automaton automaton, int limit) {
-        int length = 0;
         List<String> accepted = new ArrayList<>();
-        int fetchLength = 0;
-        int cLoops = 0;
+        int i = 0;
 
-        add:
-        while (true) {
-            cLoops++;
-
-            // get all accepted strings of the given length
-            final Set<String> currentBatch = automaton.getStrings(fetchLength);
-
-            // no Strings for the given size
-            if (currentBatch.isEmpty() && cLoops > MAX_LOOPS) {
-                break;
-            }
-
-            for (String string : currentBatch) {
-                if (length < limit) {
-                    accepted.add(string); // add to list of accepted strings
-                    length++;
-                } else {
-                    break add;
+        loop:
+        do {
+            final Set<String> currentBatch = automaton.getStrings(i);
+            if (!currentBatch.isEmpty()) {
+                for (String string : currentBatch) {
+                    if (accepted.size() < limit) {
+                        accepted.add(string); // add to list of accepted strings
+                    } else {
+                        break loop;
+                    }
                 }
             }
-
-            fetchLength++;
-        }
+            i++;
+        } while (i < MAX_LOOPS);
 
         return accepted;
     }
