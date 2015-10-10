@@ -13,28 +13,25 @@ public class AutomatonHelper {
     /**
      * TODO: refactor to use iterator pattern or Java 8 stream
      *
-     * @param automaton automaton
-     * @param limit     limit
+     * @param automaton   automaton
+     * @param maxAccepted maximum number of accepted words
      * @return list of accepted words
      */
-    public static List<String> accepted(Automaton automaton, int limit) {
+    public static List<String> accepted(Automaton automaton, int maxAccepted) {
         List<String> accepted = new ArrayList<>();
-        int i = 0;
 
-        loop:
-        do {
+        for (int i = 0; i < MAX_LOOPS; i++) {
             final Set<String> currentBatch = automaton.getStrings(i);
             if (!currentBatch.isEmpty()) {
                 for (String string : currentBatch) {
-                    if (accepted.size() < limit) {
+                    if (accepted.size() < maxAccepted) {
                         accepted.add(string); // add to list of accepted strings
                     } else {
-                        break loop;
+                        return accepted;
                     }
                 }
             }
-            i++;
-        } while (i < MAX_LOOPS);
+        }
 
         return accepted;
     }
