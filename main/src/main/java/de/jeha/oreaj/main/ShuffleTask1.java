@@ -22,7 +22,7 @@ import dk.brics.automaton.ShuffleOperations;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class ShuffleTask1 implements Runnable {
+public class ShuffleTask1 extends AbstractTask {
 
     @Override
     public void run() {
@@ -57,7 +57,7 @@ public class ShuffleTask1 implements Runnable {
 
         Population<RX> result = solver.evolve();
 
-        Orea.printResult(target, result);
+        printResult(target, result);
     }
 
 }

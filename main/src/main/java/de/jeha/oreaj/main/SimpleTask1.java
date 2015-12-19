@@ -18,7 +18,7 @@ import dk.brics.automaton.RegExp;
 /**
  * @author jenshadlich@googlemail.com
  */
-public class SimpleTask1 implements Runnable {
+public class SimpleTask1 extends AbstractTask {
 
     @Override
     public void run() {
@@ -49,7 +49,7 @@ public class SimpleTask1 implements Runnable {
 
         Population<RX> result = solver.evolve();
 
-        Orea.printResult(target, result);
+        printResult(target, result);
     }
 
 }
