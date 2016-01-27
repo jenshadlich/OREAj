@@ -1,5 +1,8 @@
 package de.jeha.oreaj.genetic.core;
 
+/**
+ * @author jenshadlich@googlemail.com
+ */
 public class Individual<GT> implements Comparable<Individual<GT>> {
 
     private final GT genotype;

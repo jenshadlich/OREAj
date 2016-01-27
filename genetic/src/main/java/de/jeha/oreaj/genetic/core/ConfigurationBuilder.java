@@ -1,5 +1,8 @@
 package de.jeha.oreaj.genetic.core;
 
+/**
+ * @author jenshadlich@googlemail.com
+ */
 public class ConfigurationBuilder {
 
     private int maxRuns = 10;

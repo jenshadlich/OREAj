@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+/**
+ * @author jenshadlich@googlemail.com
+ */
 public class Population<GT> implements Iterable<Individual<GT>> {
 
     private static final Logger LOG = LoggerFactory.getLogger(Population.class);
