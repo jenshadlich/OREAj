@@ -27,10 +27,12 @@ public class Best100SelectionTest {
         }
 
         Population<Integer> population = new Population<>(individuals);
-        Population<Integer> populationAfterSelection = selection.select(population);
+        assertEquals(5, population.size());
 
+        Population<Integer> populationAfterSelection = selection.select(population);
         assertEquals(3, populationAfterSelection.size());
         assertEquals(1, populationAfterSelection.best().getGenotype().intValue());
         assertEquals(1, populationAfterSelection.best().getFitness(), 0.e-3);
     }
+
 }
