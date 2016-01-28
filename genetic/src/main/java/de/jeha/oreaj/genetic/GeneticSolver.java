@@ -6,7 +6,6 @@ import de.jeha.oreaj.genetic.selection.ParentalSelection;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,8 +21,7 @@ public class GeneticSolver<GT> {
     private static final double DEFAULT_EPSILON = 0.1e-5;
 
     private final Configuration configuration;
-    private final PopulationInitializer initializer;
-    private final Generator<GT> generator; // TODO: remove and only use initializer
+    private final PopulationInitializer<GT> initializer;
     private final Evaluator<GT> evaluator;
     private final ParentalSelection<GT> parentalSelection;
     private final EnvironmentalSelection<GT> environmentalSelection;
@@ -34,24 +32,17 @@ public class GeneticSolver<GT> {
      * TODO: provide a builder, constructor is getting too big
      *
      * @param configuration          configuration
-     * @param generator              generator for individuals
+     * @param initializer            population initializer
      * @param evaluator              evaluator
      * @param parentalSelection      parental selection strategy
      * @param environmentalSelection environment selection strategy
      */
-    public GeneticSolver(Configuration configuration, Generator<GT> generator,
+    public GeneticSolver(Configuration configuration, PopulationInitializer<GT> initializer,
                          Evaluator<GT> evaluator,
                          ParentalSelection<GT> parentalSelection,
                          EnvironmentalSelection<GT> environmentalSelection) {
         this.configuration = configuration;
-        this.initializer = () -> {
-            List<GT> individuals = new ArrayList<>();
-            for (int i = 0; i < configuration.getPopulationMaxSize(); i++) {
-                individuals.add(generator.generate());
-            }
-            return individuals;
-        };
-        this.generator = generator;
+        this.initializer = initializer;
         this.evaluator = evaluator;
         this.parentalSelection = parentalSelection;
         this.environmentalSelection = environmentalSelection;
@@ -64,7 +55,7 @@ public class GeneticSolver<GT> {
      */
     public Population<GT> evolve() {
         LOG.info("initialize population");
-        population = new Population<>(evaluate(initializer.initialize()));
+        population = new Population<>(evaluate(initializer.initialize(configuration.getPopulationMaxSize())));
 
         LOG.info("start evolution");
         for (int i = 1; checkIfTerminate(i); i++) {

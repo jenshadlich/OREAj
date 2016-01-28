@@ -4,6 +4,7 @@ import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.core.Configuration;
 import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.core.Population;
+import de.jeha.oreaj.genetic.core.RandomPopulationInitializer;
 import de.jeha.oreaj.genetic.selection.environmental.Best100UniqueSelection;
 import de.jeha.oreaj.genetic.selection.parental.LinearVariation;
 import de.jeha.oreaj.regex.Sigma;
@@ -35,7 +36,7 @@ public class SimpleTask2 extends AbstractTask {
 
         GeneticSolver<RX> solver = new GeneticSolver<>(
                 configuration,
-                new RXGenerator(3, sigma),
+                new RandomPopulationInitializer<>(new RXGenerator(3, sigma)),
                 new RXEvaluator(target),
                 new LinearVariation<>(
                         new RandomTreeCrossover(),

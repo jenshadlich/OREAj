@@ -7,6 +7,6 @@ import java.util.List;
  */
 public interface PopulationInitializer<GT> {
 
-    List<GT> initialize();
+    List<GT> initialize(int size);
 
 }
