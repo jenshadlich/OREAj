@@ -29,15 +29,14 @@ public class GeneticSolver<GT> {
     private Population<GT> population = null;
 
     /**
-     * TODO: provide a builder, constructor is getting too big
-     *
      * @param configuration          configuration
      * @param initializer            population initializer
      * @param evaluator              evaluator
      * @param parentalSelection      parental selection strategy
      * @param environmentalSelection environment selection strategy
      */
-    public GeneticSolver(Configuration configuration, PopulationInitializer<GT> initializer,
+    public GeneticSolver(Configuration configuration,
+                         PopulationInitializer<GT> initializer,
                          Evaluator<GT> evaluator,
                          ParentalSelection<GT> parentalSelection,
                          EnvironmentalSelection<GT> environmentalSelection) {
@@ -68,7 +67,6 @@ public class GeneticSolver<GT> {
             population.join(evaluate(candidates));
 
             // environmental selection
-            // TODO: store newPopulation in a stack or something, maybe use memento pattern
             Population<GT> newPopulation = environmentalSelection.select(population);
             LOG.debug("environmental selection, size = {} -> {}", population.size(), newPopulation.size());
             population = newPopulation;
