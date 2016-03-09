@@ -2,7 +2,6 @@ package de.jeha.oreaj.main;
 
 import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.core.Configuration;
-import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.core.Population;
 import de.jeha.oreaj.genetic.core.RandomPopulationInitializer;
 import de.jeha.oreaj.genetic.selection.environmental.Best100UniqueSelection;
@@ -26,10 +25,10 @@ public class SimpleTask1 extends AbstractTask {
         final Sigma sigma = new Sigma("a", "b");
         final Automaton target = new RegExp("(aa|ba)*").toAutomaton();
 
-        Configuration configuration = new ConfigurationBuilder()
-                .setPopulationMaxSize(1000)
-                .setMaxRuns(1000)
-                .setThreshold(0.8)
+        Configuration configuration = Configuration.New()
+                .withPopulationMaxSize(1000)
+                .withMaxRuns(1000)
+                .withThreshold(0.8)
                 .build();
 
         GeneticSolver<RX> solver = new GeneticSolver<>(

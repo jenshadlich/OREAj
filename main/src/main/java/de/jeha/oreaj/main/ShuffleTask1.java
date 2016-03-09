@@ -2,7 +2,6 @@ package de.jeha.oreaj.main;
 
 import de.jeha.oreaj.genetic.GeneticSolver;
 import de.jeha.oreaj.genetic.core.Configuration;
-import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
 import de.jeha.oreaj.genetic.core.Population;
 import de.jeha.oreaj.genetic.core.RandomPopulationInitializer;
 import de.jeha.oreaj.genetic.selection.environmental.Best100UniqueSelection;
@@ -35,10 +34,10 @@ public class ShuffleTask1 extends AbstractTask {
                 new RegExp("bc").toAutomaton()
         );
 
-        Configuration configuration = new ConfigurationBuilder()
-                .setPopulationMaxSize(1000)
-                .setMaxRuns(1000)
-                .setThreshold(2.4)
+        Configuration configuration = Configuration.New()
+                .withPopulationMaxSize(1000)
+                .withMaxRuns(1000)
+                .withThreshold(2.4)
                 .build();
 
         GeneticSolver<RX> solver = new GeneticSolver<>(

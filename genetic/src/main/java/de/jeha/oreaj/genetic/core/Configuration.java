@@ -15,6 +15,10 @@ public class Configuration {
         this.threshold = threshold;
     }
 
+    public static ConfigurationBuilder New() {
+        return new ConfigurationBuilder();
+    }
+
     public int getMaxRuns() {
         return maxRuns;
     }

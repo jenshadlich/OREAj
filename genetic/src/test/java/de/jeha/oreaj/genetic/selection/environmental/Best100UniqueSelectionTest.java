@@ -1,6 +1,6 @@
 package de.jeha.oreaj.genetic.selection.environmental;
 
-import de.jeha.oreaj.genetic.core.ConfigurationBuilder;
+import de.jeha.oreaj.genetic.core.Configuration;
 import de.jeha.oreaj.genetic.core.Individual;
 import de.jeha.oreaj.genetic.core.Population;
 import de.jeha.oreaj.genetic.selection.EnvironmentalSelection;
@@ -20,7 +20,7 @@ public class Best100UniqueSelectionTest {
     @Test
     public void test() {
         EnvironmentalSelection<Integer> selection = new Best100UniqueSelection<>(
-                new ConfigurationBuilder().setPopulationMaxSize(3).build()
+                Configuration.New().withPopulationMaxSize(3).build()
         );
         List<Individual<Integer>> individuals = new ArrayList<>();
         for (int i = 5; i > 0; i--) {
