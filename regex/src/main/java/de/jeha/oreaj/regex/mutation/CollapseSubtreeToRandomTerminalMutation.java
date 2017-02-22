@@ -26,11 +26,11 @@ public class CollapseSubtreeToRandomTerminalMutation implements Mutation<RX> {
         final RX mutant = rx.deepClone();
         final RX subtree = Subtree.randomSubtree(mutant);
         final Letter newLetter = new Letter(sigma.random());
-        final List<RX> siblings = subtree.siblings();
 
         // if it's not a terminal, replace a random sibling
-        if (siblings.size() > 0) {
-            RX selectedChild = siblings.get(GENERATOR.nextInt(siblings.size()));
+        if (subtree.hasSiblings()) {
+            final List<RX> siblings = subtree.siblings();
+            final RX selectedChild = siblings.get(GENERATOR.nextInt(siblings.size()));
             subtree.substitute(selectedChild, newLetter);
         }
 

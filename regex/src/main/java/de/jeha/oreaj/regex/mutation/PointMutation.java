@@ -28,8 +28,8 @@ public class PointMutation implements Mutation<RX> {
         RX parent = mutant;
         RX child = mutant;
         do {
-            final List<RX> siblings = child.siblings();
-            if (siblings.size() > 0) {
+            if (child.hasSiblings()) {
+                final List<RX> siblings = child.siblings();
                 // find a path
                 parent = child;
                 child = siblings.get(GENERATOR.nextInt(siblings.size()));

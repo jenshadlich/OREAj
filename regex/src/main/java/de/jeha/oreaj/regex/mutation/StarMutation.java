@@ -18,10 +18,10 @@ public class StarMutation implements Mutation<RX> {
     public RX mutate(RX rx) {
         final RX mutant = rx.deepClone();
         final RX subtree = Subtree.randomSubtree(mutant);
-        final List<RX> siblings = subtree.siblings();
 
-        if (siblings.size() > 0) {
-            RX selectedChild = siblings.get(GENERATOR.nextInt(siblings.size()));
+        if (subtree.hasSiblings()) {
+            final List<RX> siblings = subtree.siblings();
+            final RX selectedChild = siblings.get(GENERATOR.nextInt(siblings.size()));
             subtree.substitute(selectedChild, new Star(selectedChild));
         }
 
