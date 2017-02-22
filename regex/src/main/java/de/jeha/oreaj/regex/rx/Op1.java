@@ -21,6 +21,11 @@ public abstract class Op1 extends AbstractRX {
     }
 
     @Override
+    public boolean hasSiblings() {
+        return true;
+    }
+
+    @Override
     public final void substitute(RX rx, RX substitute) {
         assert down.equals(rx);
         down = substitute;

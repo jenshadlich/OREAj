@@ -22,6 +22,11 @@ public class Letter extends AbstractRX {
     }
 
     @Override
+    public boolean hasSiblings() {
+        return false;
+    }
+
+    @Override
     public RX deepClone() {
         return new Letter(value);
     }

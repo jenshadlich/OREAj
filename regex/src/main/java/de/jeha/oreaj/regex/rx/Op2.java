@@ -34,6 +34,11 @@ public abstract class Op2 extends AbstractRX {
     }
 
     @Override
+    public boolean hasSiblings() {
+        return true;
+    }
+
+    @Override
     public final void substitute(RX rx, RX substitute) {
         assert left.equals(rx) || right.equals(rx);
         if (left.equals(rx)) {

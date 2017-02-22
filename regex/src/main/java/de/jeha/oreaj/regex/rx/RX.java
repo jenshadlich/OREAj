@@ -18,6 +18,11 @@ public interface RX extends Iterable<RX> {
     List<RX> siblings();
 
     /**
+     * @return true if list of all siblings is not empty
+     */
+    boolean hasSiblings();
+
+    /**
      * Make a deep copy of the current object.
      *
      * @return the identical clone
