@@ -13,9 +13,9 @@ public class Orea {
      * @param args cmd line arguments (not used yet)
      */
     public static void main(String... args) {
-        //new SimpleTask1().run();
+        new SimpleTask1().run();
         //new SimpleTask2().run();
-        new ShuffleTask1().run();
+        //new ShuffleTask1().run();
     }
 
 }

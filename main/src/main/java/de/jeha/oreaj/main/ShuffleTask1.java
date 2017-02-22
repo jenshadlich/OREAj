@@ -35,8 +35,8 @@ public class ShuffleTask1 extends AbstractTask {
         );
 
         Configuration configuration = Configuration.New()
-                .withPopulationMaxSize(1000)
-                .withMaxRuns(1000)
+                .withPopulationMaxSize(1_000)
+                .withMaxRuns(1_000)
                 .withThreshold(2.4)
                 .build();
 

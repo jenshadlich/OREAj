@@ -28,8 +28,8 @@ public class SimpleTask2 extends AbstractTask {
         final Automaton target = new RegExp("(ab|bb)*").toAutomaton();
 
         Configuration configuration = Configuration.New()
-                .withPopulationMaxSize(1000)
-                .withMaxRuns(10000)
+                .withPopulationMaxSize(1_000)
+                .withMaxRuns(1_0000)
                 .withThreshold(0.1)
                 .build();
 
