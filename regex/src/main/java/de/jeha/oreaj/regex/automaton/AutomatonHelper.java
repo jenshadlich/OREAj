@@ -18,12 +18,12 @@ public class AutomatonHelper {
      * @return list of accepted words
      */
     public static List<String> accepted(Automaton automaton, int maxAccepted) {
-        List<String> accepted = new ArrayList<>();
+        final List<String> accepted = new ArrayList<>();
 
         for (int i = 0; i < MAX_LOOPS; i++) {
-            final Set<String> currentBatch = automaton.getStrings(i);
-            if (!currentBatch.isEmpty()) {
-                for (String string : currentBatch) {
+            final Set<String> currentSet = automaton.getStrings(i);
+            if (!currentSet.isEmpty()) {
+                for (String string : currentSet) {
                     if (accepted.size() < maxAccepted) {
                         accepted.add(string); // add to list of accepted strings
                     } else {
@@ -37,8 +37,8 @@ public class AutomatonHelper {
     }
 
     public static boolean isEquivalent(Automaton a, Automaton b) {
-        Automaton tooMuch = a.minus(b);
-        Automaton missing = b.minus(a);
+        final Automaton tooMuch = a.minus(b);
+        final Automaton missing = b.minus(a);
 
         return tooMuch.isEmpty() && missing.isEmpty();
     }
