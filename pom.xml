@@ -22,8 +22,8 @@
     </developers>
 
     <properties>
-        <project.target.jdk>1.8</project.target.jdk>
-        <project.source.jdk>1.8</project.source.jdk>
+        <project.target.jdk>11</project.target.jdk>
+        <project.source.jdk>11</project.source.jdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- project dependency versions -->
