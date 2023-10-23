@@ -1,26 +1,31 @@
 package de.jeha.oreaj.regex;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
  * @author jenshadlich@googlemail.com
  */
-public class SigmaTest {
+class SigmaTest {
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructorEmpty() {
-        new Sigma();
-    }
-
-    @Test(expected = IllegalArgumentException.class)
-    public void testConstructorNull() {
-        new Sigma(null);
+    @Test
+    void testConstructorEmpty() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Sigma();
+        });
     }
 
     @Test
-    public void testRandom() {
+    void testConstructorNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new Sigma(null);
+        });
+    }
+
+    @Test
+    void testRandom() {
         assertEquals("a", new Sigma("a").random());
     }
 

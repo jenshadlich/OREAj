@@ -2,19 +2,19 @@ package de.jeha.oreaj.regex.automaton;
 
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AutomatonHelperTest {
+class AutomatonHelperTest {
 
     @Test
-    public void acceptedTestAStar() {
+    void acceptedTestAStar() {
         Automaton a = new RegExp("a*").toAutomaton();
         String[] expected = {"", "a", "aa", "aaa", "aaaa", "aaaaa", "aaaaaa", "aaaaaaa", "aaaaaaaa", "aaaaaaaaa"};
 
@@ -25,7 +25,7 @@ public class AutomatonHelperTest {
     }
 
     @Test
-    public void acceptedTestAOrBStar() {
+    void acceptedTestAOrBStar() {
         Automaton a = new RegExp("(a|b)*").toAutomaton();
         Set<String> expected = new HashSet<>(Arrays.asList(new String[]{
                 "", "b", "a", "ba", "aa", "ab", "bb", "aaa", "aab", "abb", "bbb", "bba", "baa", "aba", "bab"

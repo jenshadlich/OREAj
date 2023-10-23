@@ -4,15 +4,15 @@ import de.jeha.oreaj.genetic.core.Mutation;
 import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
 import de.jeha.oreaj.regex.rx.Star;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * @author jenshadlich@googlemail.com
  */
-public class RandomMutationTest {
+class RandomMutationTest {
 
     private static final int CALLS = 10;
 
@@ -20,7 +20,7 @@ public class RandomMutationTest {
     private int randomMutation2Called = 0;
 
     @Test
-    public void test() {
+    void test() {
 
         RX rx = new Star(new Letter("a"));
         @SuppressWarnings("unchecked")

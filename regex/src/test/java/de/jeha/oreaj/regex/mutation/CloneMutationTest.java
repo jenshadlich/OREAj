@@ -3,15 +3,15 @@ package de.jeha.oreaj.regex.mutation;
 import de.jeha.oreaj.regex.Sigma;
 import de.jeha.oreaj.regex.generator.RXGenerator;
 import de.jeha.oreaj.regex.rx.RX;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-public class CloneMutationTest {
+class CloneMutationTest {
 
     @Test
-    public void test() {
+    void test() {
         Sigma sigma = new Sigma("a", "b", "c");
         RX rx = new RXGenerator(3, sigma).generate();
         RX mutant = new CloneMutation().mutate(rx);

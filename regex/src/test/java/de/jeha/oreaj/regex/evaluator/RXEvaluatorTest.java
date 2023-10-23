@@ -4,14 +4,14 @@ import de.jeha.oreaj.genetic.core.Evaluator;
 import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
 import dk.brics.automaton.RegExp;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RXEvaluatorTest {
+class RXEvaluatorTest {
 
     @Test
-    public void test() {
+    void test() {
         Evaluator<RX> evaluator = new RXEvaluator(new RegExp("(a|b)*").toAutomaton());
         double result = evaluator.evaluate(new Letter("a"));
 

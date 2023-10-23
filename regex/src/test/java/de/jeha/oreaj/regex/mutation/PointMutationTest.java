@@ -5,14 +5,14 @@ import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
 import de.jeha.oreaj.regex.rx.Star;
 import de.jeha.oreaj.regex.rx.Union;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-public class PointMutationTest {
+class PointMutationTest {
 
     @Test
-    public void test() {
+    void test() {
         Sigma sigma = new Sigma("a", "b", "c");
         RX rx = new Star(new Union(new Letter("a"), new Letter("b"))); // (a|b)*
         RX mutant = new PointMutation(sigma).mutate(rx);
@@ -25,7 +25,7 @@ public class PointMutationTest {
     }
 
     @Test
-    public void testWithRXBeingOnlyOneLetter() {
+    void testWithRXBeingOnlyOneLetter() {
         Sigma sigma = new Sigma("a", "b");
         RX rx = new Letter("a");
         RX mutant = new PointMutation(sigma).mutate(rx);
@@ -35,7 +35,7 @@ public class PointMutationTest {
     }
 
     @Test
-    public void testWithStarAndLetter() {
+    void testWithStarAndLetter() {
         Sigma sigma = new Sigma("a", "b");
         RX rx = new Star(new Letter("a"));
         RX mutant = new PointMutation(sigma).mutate(rx);

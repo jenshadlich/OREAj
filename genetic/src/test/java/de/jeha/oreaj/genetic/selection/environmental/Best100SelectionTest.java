@@ -4,20 +4,20 @@ import de.jeha.oreaj.genetic.core.Configuration;
 import de.jeha.oreaj.genetic.core.Individual;
 import de.jeha.oreaj.genetic.core.Population;
 import de.jeha.oreaj.genetic.selection.EnvironmentalSelection;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author jenshadlich@googlemail.com
  */
-public class Best100SelectionTest {
+class Best100SelectionTest {
 
     @Test
-    public void test() {
+    void test() {
         EnvironmentalSelection<Integer> selection = new Best100Selection<>(
                 Configuration.New().withPopulationMaxSize(3).build()
         );

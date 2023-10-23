@@ -6,14 +6,14 @@ import de.jeha.oreaj.regex.parse.RegexParser;
 import de.jeha.oreaj.regex.rx.Letter;
 import de.jeha.oreaj.regex.rx.RX;
 import dk.brics.automaton.RegExp;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class RXEvaluatorWithLengthTest {
+class RXEvaluatorWithLengthTest {
 
     @Test
-    public void test() {
+    void test() {
         Evaluator<RX> evaluator = new RXEvaluatorWithLength(new RegExp("(a|b)*").toAutomaton());
         double result = evaluator.evaluate(new Letter("a"));
 
@@ -21,7 +21,7 @@ public class RXEvaluatorWithLengthTest {
     }
 
     @Test
-    public void test2() throws NoParseException {
+    void test2() throws NoParseException {
         Evaluator<RX> evaluator = new RXEvaluatorWithLength(new RegExp("(aa|ba)*").toAutomaton());
         double result = evaluator.evaluate(new RegexParser("((a)*)*").parse());
 
@@ -30,7 +30,7 @@ public class RXEvaluatorWithLengthTest {
     }
 
     @Test
-    public void test3() throws NoParseException {
+    void test3() throws NoParseException {
         Evaluator<RX> evaluator = new RXEvaluatorWithLength(new RegExp("(aa|ba)*").toAutomaton());
         double result = evaluator.evaluate(new RegexParser("(a(a)*|(a)*)*").parse());
 

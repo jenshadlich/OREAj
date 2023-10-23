@@ -3,16 +3,16 @@ package de.jeha.oreaj.regex.automaton;
 import dk.brics.automaton.Automaton;
 import dk.brics.automaton.RegExp;
 import dk.brics.automaton.ShuffleOperations;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ShuffleTest {
+class ShuffleTest {
 
     @Test
-    public void shuffle() {
+    void shuffle() {
         // (aa)* $ b*
         Automaton a = new RegExp("(aa)*").toAutomaton();
         Automaton b = new RegExp("b*").toAutomaton();

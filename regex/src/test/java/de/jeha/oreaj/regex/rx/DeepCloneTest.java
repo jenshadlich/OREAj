@@ -1,17 +1,17 @@
 package de.jeha.oreaj.regex.rx;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 /**
  * @author jenshadlich@googlemail.com
  */
-public class DeepCloneTest {
+class DeepCloneTest {
 
     @Test
-    public void test() {
+    void test() {
         RX rx = new Dot(new Star(new Letter("a")), new Letter("b"));
         RX mutant = rx.deepClone();
 

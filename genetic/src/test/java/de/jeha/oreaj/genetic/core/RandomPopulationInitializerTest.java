@@ -1,18 +1,18 @@
 package de.jeha.oreaj.genetic.core;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author jenshadlich@googlemail.com
  */
-public class RandomPopulationInitializerTest {
+class RandomPopulationInitializerTest {
 
     @Test
-    public void test() {
+    void test() {
         PopulationInitializer<String> initializer = new RandomPopulationInitializer<>(() -> "1");
 
         List<String> result = initializer.initialize(3);
