@@ -12,12 +12,12 @@ class DeepCloneTest {
 
     @Test
     void test() {
-        RX rx = new Dot(new Star(new Letter("a")), new Letter("b"));
+        Dot rx = new Dot(new Star(new Letter("a")), new Letter("b"));
         RX mutant = rx.deepClone();
 
         assertEquals(rx.show(), mutant.show());
         assertNotEquals(rx, mutant);
-        assertNotEquals(Dot.class.cast(rx).getLeft(), Dot.class.cast(mutant).getLeft());
-        assertNotEquals(Dot.class.cast(rx).getRight(), Dot.class.cast(mutant).getRight());
+        assertNotEquals(rx.getLeft(), ((Dot) mutant).getLeft());
+        assertNotEquals(rx.getRight(), ((Dot) mutant).getRight());
     }
 }

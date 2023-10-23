@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Letter extends AbstractRX {
 
-    private String value;
+    private final String value;
 
     public Letter(String value) {
         this.value = value;

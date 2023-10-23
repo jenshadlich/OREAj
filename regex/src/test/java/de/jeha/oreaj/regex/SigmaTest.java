@@ -12,16 +12,12 @@ class SigmaTest {
 
     @Test
     void testConstructorEmpty() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Sigma();
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Sigma());
     }
 
     @Test
     void testConstructorNull() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Sigma(null);
-        });
+        assertThrows(IllegalArgumentException.class, () -> new Sigma(null));
     }
 
     @Test

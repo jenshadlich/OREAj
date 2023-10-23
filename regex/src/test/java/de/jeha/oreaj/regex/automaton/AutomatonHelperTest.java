@@ -27,9 +27,7 @@ class AutomatonHelperTest {
     @Test
     void acceptedTestAOrBStar() {
         Automaton a = new RegExp("(a|b)*").toAutomaton();
-        Set<String> expected = new HashSet<>(Arrays.asList(new String[]{
-                "", "b", "a", "ba", "aa", "ab", "bb", "aaa", "aab", "abb", "bbb", "bba", "baa", "aba", "bab"
-        }));
+        Set<String> expected = new HashSet<>(Arrays.asList("", "b", "a", "ba", "aa", "ab", "bb", "aaa", "aab", "abb", "bbb", "bba", "baa", "aba", "bab"));
 
         for (String s : AutomatonHelper.accepted(a, 15)) {
             assertTrue(expected.contains(s));

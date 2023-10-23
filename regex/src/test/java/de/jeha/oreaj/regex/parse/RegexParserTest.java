@@ -33,24 +33,18 @@ class RegexParserTest {
     }
 
     @Test
-    void testNoParseException1() throws NoParseException {
-        assertThrows(NoParseException.class, () -> {
-            new RegexParser("123").parse();
-        });
+    void testNoParseException1() {
+        assertThrows(NoParseException.class, () -> new RegexParser("123").parse());
     }
 
     @Test
-    void testNoParseException2() throws NoParseException {
-        assertThrows(NoParseException.class, () -> {
-            new RegexParser("(a").parse();
-        });
+    void testNoParseException2() {
+        assertThrows(NoParseException.class, () -> new RegexParser("(a").parse());
     }
 
     @Test
-    void testNoParseException3() throws NoParseException {
-        assertThrows(NoParseException.class, () -> {
-            new RegexParser("a)").parse();
-        });
+    void testNoParseException3() {
+        assertThrows(NoParseException.class, () -> new RegexParser("a)").parse());
     }
 
     @Test

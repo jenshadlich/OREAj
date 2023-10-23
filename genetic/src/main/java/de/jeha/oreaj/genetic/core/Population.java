@@ -39,7 +39,7 @@ public class Population<GT> implements Iterable<Individual<GT>> {
 
         final Iterator<Individual<GT>> it = this.individuals.iterator();
 
-        return new Iterator<Individual<GT>>() {
+        return new Iterator<>() {
 
             @Override
             public boolean hasNext() {

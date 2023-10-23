@@ -11,7 +11,7 @@ import java.util.Stack;
  */
 public class PreorderIterator implements Iterator<RX> {
 
-    private final Stack<RX> path = new Stack<RX>();
+    private final Stack<RX> path = new Stack<>();
 
     public PreorderIterator(RX tree) {
         this.path.push(tree);

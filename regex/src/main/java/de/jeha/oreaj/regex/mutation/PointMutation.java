@@ -35,7 +35,7 @@ public class PointMutation implements Mutation<RX> {
                 child = siblings.get(GENERATOR.nextInt(siblings.size()));
             } else {
                 // the 'child' must be a Letter
-                // enforce to not replace a Letter with a equal Letter
+                // enforce to not replace a Letter with an equal Letter
                 Set<String> sigmaSetForSubstitution = new HashSet<>(sigma.asList());
                 if (sigma.size() > 1) {
                     final String terminalToExclude = child.show();
